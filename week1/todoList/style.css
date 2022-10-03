@@ -5,11 +5,15 @@
     font-family: "Inter", sans-serif;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .header {
     position: relative;
 }
 
-.header-title {
+/* .header-title {
     height: 50px;
 
     margin: 15px;
@@ -20,6 +24,16 @@
 
     font-size: 2rem;
     font-weight: 900;
+} */
+
+.header-logo {
+    width: 150px;
+
+    margin: 20px;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
 
 .header__nav {
@@ -47,7 +61,6 @@
     color: black;
     text-decoration : underline;
 
-    cursor: pointer;
 }
 
 /* ---------------------------------- */
@@ -62,6 +75,8 @@
     /* justify-content: space-around; */
     flex-wrap: wrap;
 
+    position: relative;
+
     /* box-shadow : x y blur spread color */
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
 }
@@ -70,10 +85,26 @@
     border: 0;
     height: 1px;
 
-    margin-bottom: 15px;
+    margin: 15px 0px;
 
     background-color : #E3E6EA;
 }
+
+.box .todolist__footer {
+    width: 90%;
+    height: 50px;
+
+    position: absolute;
+    bottom: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ---------------------------------- */
 
 .todolist {
     display: flex;
@@ -81,22 +112,70 @@
 
 .todolist-title {
     font-weight: 900;
-    padding-bottom: 10px;
 }
 
 .todolist__today {
     display: flex;
-    flex-grow: 1;
+    flex: 1;
 }
 
 .todolist__tomorrow {
     display: flex;
-    flex-grow: 1;
+    flex: 1;
 }
 
-.todolist-list {
-    margin-bottom: 5px;
+.todolist__lists {
+}
+
+.todolist__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 5px;
+    margin: 5px;
+}
+
+.todolist__item:not(:last-child) {
     border-bottom: 1px solid #efefef;
 }
 
+
 /* ---------------------------------- */
+
+.todolist__input {
+    height: 30px;
+
+    display: block;
+    flex-grow: 1;
+
+    border: 1px solid #efefef;
+}
+
+.todolist__add-button {
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+    
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: #B6BEC9;
+    background-color: white;
+
+}
+
+.todolist__delete-button {
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+    
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: #B6BEC9;
+    background-color: white;
+    
+}

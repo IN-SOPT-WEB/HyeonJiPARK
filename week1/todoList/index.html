@@ -13,7 +13,9 @@
 </head>
 <body>
     <header class="header">
-        <h2 class="header-title">TODOLIST</h2>
+        <!-- <h2 class="header-title">TODOLIST</h2> -->
+
+        <img src="./logo.png" class="header-logo" alt="로고">
         <nav class="header__nav">
             <button class="header__nav-button" type="button">TODAY PLAN</button>
             <button class="header__nav-button" type="button">TOMORROW PLAN</button>
@@ -24,31 +26,31 @@
         <section class="todolist__today box">
             <h3 class="todolist-title">TODAY</h3>
             <hr class="todolist-line">
-            <ul class="todolist-lists">
+            <ul class="todolist__lists">
             </ul> 
-            <footer>
-                <input />
-                <button>+</button>
+            <footer class="todolist__footer">
+                <input class="todolist__input" type="text"/>
+                <button class="todolist__add-button" type="button">+</button>
             </footer>
         </section>
         <section class="todolist__tomorrow box">
             <h3 class="todolist-title">TOMORROW</h3>
             <hr class="todolist-line">
-            <ul class="todolist-lists">                
-                <li class="todolist-list">예시1
-                    <button>
+            <ul class="todolist__lists">                
+                <li class="todolist__item">투두리스트 과제하기
+                    <button class="todolist__delete-button">
                         <span>-</span>
                     </button>
                 </li>
-                <li class="todolist-list">예시2
-                    <button>
+                <li class="todolist__item">벨로그 클론코딩 과제하기
+                    <button class="todolist__delete-button">
                         <span>-</span>
                     </button>
                 </li>
             </ul>
-            <footer>
-                <input />
-                <button>+</button>
+            <footer class="todolist__footer">
+                <input class="todolist__input" type="text"/>
+                <button class="todolist__add-button" type="button">+</button>
             </footer>
         </section>
     </main>
