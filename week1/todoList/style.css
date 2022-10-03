@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+.header {
+    position: relative;
+}
+
+.header-title {
+    height: 50px;
+
+    margin: 15px;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.header__nav {
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.header__nav-button {
+    border: 0;
+
+    padding: 10px;
+    
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: #B6BEC9;
+    background-color: white;
+}
+
+.header__nav-button:hover {
+    color: black;
+    text-decoration : underline;
+
+    cursor: pointer;
+}
+
+/* ---------------------------------- */
+
+.box {
+    height: 500px;
+    margin: 20px;
+    padding: 15px;
+
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    flex-wrap: wrap;
+
+    /* box-shadow : x y blur spread color */
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
+}
+
+.box .todolist-line {
+    border: 0;
+    height: 1px;
+
+    margin-bottom: 15px;
+
+    background-color : #E3E6EA;
+}
+
+.todolist {
+    display: flex;
+}
+
+.todolist-title {
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+
+.todolist__today {
+    display: flex;
+    flex-grow: 1;
+}
+
+.todolist__tomorrow {
+    display: flex;
+    flex-grow: 1;
+}
+
+.todolist-list {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #efefef;
+}
+
+/* ---------------------------------- */
