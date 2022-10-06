@@ -1,4 +1,4 @@
-*{
+* {
     position: relative;
     box-sizing: border-box;
     background-color: #f8f9fa;
@@ -10,6 +10,8 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+/* ----------------- header ----------------- */
 
 .header {
     height: 64px;
@@ -47,7 +49,7 @@ body {
     padding: 5px 15px;
     margin-left: 10px;
 
-    border: 1;
+    border: 1px;
     border-radius: 25px;
     
     font-size: 1rem;
@@ -87,7 +89,7 @@ body {
     color: black;
 }
 
-/* ---------------------------------- */
+/* ----------------- nav ----------------- */
 
 .nav {
     display: flex;
@@ -105,7 +107,6 @@ body {
 
 .nav__list {
     display: flex;
-    /* align-items: center; */
 }
 
 .nav__list li {
@@ -161,27 +162,22 @@ body {
     cursor: pointer;
 }
 
-/* ---------------------------------- */
+/* ----------------- card section ----------------- */
 
 .section {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* flex-grow: 1;
-    flex-shrink: 1; */
     
     margin: 20px auto;
 }
 
 .card {
-    width: 25;
-    /* height: 377px; */
+    width: 25%;
     margin: 15px;
 
     display: flex;
     flex-direction: column;
-    /* flex-basis: 300px; */
-    /* justify-content: space-between; */
     flex-grow: 1;
 
     background-color: white;
@@ -282,7 +278,6 @@ body {
 
 
 /* ---------------------------------- */
-
 
 @font-face {
     font-family: 'Material Icons';
