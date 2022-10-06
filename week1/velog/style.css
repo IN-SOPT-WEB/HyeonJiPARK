@@ -4,14 +4,10 @@
     background-color: #f8f9fa;
 }
 
-html {
-    width: 1024px;
-    margin: 0 auto;
-}
-
 body {
+    max-width: 1024px;
+    margin: 0 auto;
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
 }
 
@@ -178,8 +174,8 @@ body {
 }
 
 .card {
-    width: 15rem;
-    height: 377px;
+    width: 25;
+    /* height: 377px; */
     margin: 15px;
 
     display: flex;
@@ -325,18 +321,32 @@ body {
     font-feature-settings: 'liga';
 }
 
-@media all and (min-width: 321px) and (max-width: 768px) {
-    section {
+@media (min-width:1445px){
+    body{
+        max-width: 1444px;
+    }
+
+    .card{
+        width:20%;
+    }
+}
+
+@media (min-width: 660px) and (max-width: 1444px) {
+    body{
         width: 100%;
     }
-  }
-  @media all and (min-width: 769px) and (max-width: 1024px) {
-    section {
-      width: 100%;
+
+    .card{
+        width:30%;
     }
-  }
-  @media all and (min-width: 1025px) {
-    section {
-        width: 100%;
+}
+
+@media (max-width: 660px){
+    body{
+        width:100%;
+    }
+
+    .card{
+        width:50%;
     }
 }
