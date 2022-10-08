@@ -1,0 +1,344 @@
+* {
+    position: relative;
+    box-sizing: border-box;
+    background-color: #f8f9fa;
+}
+
+body {
+    max-width: 1024px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----------------- header ----------------- */
+
+.header {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header > h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.header > h1:hover {
+    cursor: pointer;
+}
+.header__setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__lightmode,
+.header__search {
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.header__lightmode:hover,
+.header__search:hover {
+    background-color: #E3E6EA;
+    cursor: pointer;
+}
+
+.header__write {
+    padding: 5px 15px;
+    margin-left: 10px;
+
+    border: 0.5px solid black;
+    border-radius: 25px;
+    
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.header__write:hover {
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+.header__profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding-left: 20px;
+}
+
+.header__profile:hover {
+    cursor: pointer;
+}
+
+.header__image {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 25px;
+}
+
+.header__dropdown {
+    color: gray;
+}
+
+.header__dropdown:hover {
+    color: black;
+}
+
+/* ----------------- nav ----------------- */
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    margin-top: 20px;
+}
+
+.nav__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav__list {
+    display: flex;
+}
+
+.nav__list li {
+    display: flex;
+    place-items: center;
+    padding: 10px 20px;
+    gap: 5px;
+    font-size: 1.2rem;
+}
+
+.nav__list li:hover {
+    cursor: pointer;
+}
+
+.nav__trending {
+    border-bottom: 2px solid;
+}
+
+.nav__recent {
+    color: gray;
+}
+
+.nav__dropdown {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 5px 10px;
+
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.nav__dropdown > span {
+    background-color: white;
+
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.nav__dropdown:hover {
+    cursor: pointer;
+}
+
+.nav__more {
+    padding-right: 5px;
+    color: gray;
+}
+
+.nav__more:hover {
+    cursor: pointer;
+}
+
+/* ----------------- card section ----------------- */
+
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    margin: 20px auto;
+}
+
+.card {
+    width: 25%;
+    margin: 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: white;
+    text-decoration: none;
+    color: #444;
+    box-shadow: 0 0 10px 1px rgba(0,0,0,0.05);
+
+    position: relative;
+    top: 0;
+    transition: all .25s ease-in;
+
+}
+
+.card:hover {
+    top: -10px;
+    box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
+}
+
+.card__thumbnail {
+    width: 100%;
+    height: 45%;
+    background-color: white;
+}
+
+.card__title {
+    padding: 15px;
+    font-weight: 700;
+    background-color: white;
+}
+
+.card__description {
+    padding: 0 15px;
+    color: gray;
+    font-size: 0.9em;
+    font-weight: 400;
+    line-height: 1.3rem;
+    background-color: white;
+    margin-bottom: auto;
+    
+}
+
+.card__info {
+    padding: 15px;
+    background-color: white;
+    font-size: 0.8rem;
+    color: darkgray;
+}
+
+.card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px;
+
+    border-top: 1px solid #E3E6EA;
+    font-weight: 700;
+    background-color: white;
+}
+
+.card__user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: white;
+    font-size: 0.8rem;
+}
+
+.card__user > span{
+    font-weight: 200;
+    background-color: white;
+}
+
+.user__image {
+    width: 25px;
+    height: 25px;
+
+    border-radius: 25px;
+}
+.user__name {
+    background-color: white;
+}
+
+.card__like {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: white;
+}
+
+.card__like > span {
+    font-size: 0.8rem;
+    font-weight: 400;
+    background-color: white;
+}
+
+
+/* ---------------------------------- */
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+@media (min-width:1445px){
+    body{
+        max-width: 1444px;
+    }
+
+    .card{
+        width:22%;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1444px) {
+    .card{
+        width:30%;
+    }
+}
+
+@media (min-width: 660px) and (max-width: 1024px) {
+    .card{
+        width:45%;
+    }
+}
+
+@media (max-width: 660px){
+    .card{
+        width:100%;
+    }
+}

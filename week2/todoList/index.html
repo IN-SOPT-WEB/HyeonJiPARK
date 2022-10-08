@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>TODOLIST</title>
+</head>
+<body>
+    <header class="header">
+        <img src="./logo.png" class="header-logo" alt="로고">
+        <nav class="header__nav">
+            <button class="header__nav-button" type="button">TODAY PLAN</button>
+            <button class="header__nav-button" type="button">TOMORROW PLAN</button>
+            <button class="header__nav-button" type="button">ALL</button>
+        </nav>
+    </header>
+    <main class="todolist">
+        <section class="todolist__today box">
+            <h3 class="todolist-title">TODAY</h3>
+            <hr class="todolist-line">
+            <ul class="todolist__lists">
+            </ul> 
+            <footer class="todolist__footer">
+                <input class="todolist__input" type="text"/>
+                <button class="todolist__add-button" type="button">+</button>
+            </footer>
+        </section>
+        <section class="todolist__tomorrow box">
+            <h3 class="todolist-title">TOMORROW</h3>
+            <hr class="todolist-line">
+            <ul class="todolist__lists">                
+                <li class="todolist__item">투두리스트 과제하기
+                    <button class="todolist__delete-button">
+                        <span>-</span>
+                    </button>
+                </li>
+                <li class="todolist__item">벨로그 클론코딩 과제하기
+                    <button class="todolist__delete-button">
+                        <span>-</span>
+                    </button>
+                </li>
+            </ul>
+            <footer class="todolist__footer">
+                <input class="todolist__input" type="text"/>
+                <button class="todolist__add-button" type="button">+</button>
+            </footer>
+        </section>
+    </main>
+</body>
+</html>
