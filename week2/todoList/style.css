@@ -13,7 +13,7 @@ button:hover {
     position: relative;
 }
 
-.header-logo {
+.header__logo {
     width: 150px;
 
     margin: 20px;
@@ -65,15 +65,6 @@ button:hover {
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
 }
 
-.box .todolist-line {
-    border: 0;
-    height: 1px;
-
-    margin: 15px 0px;
-
-    background-color : #E3E6EA;
-}
-
 .box .todolist__footer {
     width: 90%;
     height: 50px;
@@ -94,8 +85,10 @@ button:hover {
     display: flex;
 }
 
-.todolist-title {
+.todolist__title {
     font-weight: 900;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #bac2cc;
 }
 
 .todolist__today {
