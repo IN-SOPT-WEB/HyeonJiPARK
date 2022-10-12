@@ -44,10 +44,16 @@ button:hover {
     background-color: white;
 }
 
-.header__nav-button:hover {
+.header__nav-button:hover
+{
     color: black;
     text-decoration : underline;
+}
 
+.clicked
+{
+    color: black;
+    text-decoration : underline;
 }
 
 /* ---------------------------------- */

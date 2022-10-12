@@ -24,15 +24,23 @@ const deleteBtn = $$('.todolist__delete-button'); // 삭제 버튼
 today.addEventListener('click', function(e) {
     tomorrowPlan.classList.add("hidden");
     todayPlan.classList.remove("hidden");
+    today.classList.add("clicked");
+    tomorrow.classList.remove("clicked");
+    all.classList.remove("clicked");  
 });
 tomorrow.addEventListener('click', function(e) {
     todayPlan.classList.add("hidden");
     tomorrowPlan.classList.remove("hidden");
-    tomorrowPlan.style.width = '100%';
+    tomorrow.classList.add("clicked");
+    today.classList.remove("clicked");
+    all.classList.remove("clicked");  
 });
 all.addEventListener('click', function(e) {
     todayPlan.classList.remove("hidden");
     tomorrowPlan.classList.remove("hidden");
+    all.classList.add("clicked");
+    today.classList.remove("clicked");
+    tomorrow.classList.remove("clicked");  
 });
 
 // 투두리스트 삭제 함수
