@@ -13,14 +13,12 @@ const toDoList = $('.box'); // 투두리스트창
 const lists = $('.todolist__lists'); // 투두리스트 목록
 const input = $('.todolist__input');  // 투두리스트 임력
 const addBtn = $('.todolist__add-button'); // 추가 버튼
-const deleteBtn = document.querySelectorAll('.todolist__delete-button'); // 삭제 버튼
+const deleteBtn = $$('.todolist__delete-button'); // 삭제 버튼
 
 // 오늘, 내일, 함께 보기
 today.addEventListener('click', function(e) {
     tomorrowPlan.classList.add("hidden");
     todayPlan.classList.remove("hidden");
-
-    todayPlan.style.width = '100%';
 });
 
 tomorrow.addEventListener('click', function(e) {
