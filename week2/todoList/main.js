@@ -1,49 +1,65 @@
 const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
 
-const today = $('.today'); // 오늘만 보기
-const tomorrow = $('.tomorrow'); // 내일만 보기
-const all = $('.all'); // 함께 보기
 
+const today = $('.today'); // 오늘만 보기 버튼
+const tomorrow = $('.tomorrow'); // 내일만 보기 버튼
+const all = $('.all'); // 함께 보기 버튼
+
+const todayPlan = $('.todolist__today'); // 오늘 투두리스트창
+const tomorrowPlan = $('.todolist__tomorrow'); // 내일 투두리스트창
 
 const toDoList = $('.box'); // 투두리스트창
 const lists = $('.todolist__lists'); // 투두리스트 목록
 const input = $('.todolist__input');  // 투두리스트 임력
 const addBtn = $('.todolist__add-button'); // 추가 버튼
-const deleteBtn = $('.todolist__delete-button'); // 삭제 버튼
-const check = $('.todolist__ckeck'); // 투두리스트 체크
+const deleteBtn = document.querySelectorAll('.todolist__delete-button'); // 삭제 버튼
 
+// 오늘, 내일, 함께 보기
+today.addEventListener('click', function(e) {
+    tomorrowPlan.classList.add("hidden");
+    todayPlan.classList.remove("hidden");
 
-    
+    todayPlan.style.width = '100%';
+});
+
+tomorrow.addEventListener('click', function(e) {
+    todayPlan.classList.add("hidden");
+    tomorrowPlan.classList.remove("hidden");
+    tomorrowPlan.style.width = '100%';
+});
+
+all.addEventListener('click', function(e) {
+    todayPlan.classList.remove("hidden");
+    tomorrowPlan.classList.remove("hidden");
+});
+
+// 투두리스트 삭제 함수
+function deleteToDo(e)  {
+    let remove = e.target.parentNode;
+    let parentNode = remove.parentNode;
+    parentNode.removeChild(remove);
+}
+
+// 투두리스트 추가
 addBtn.addEventListener('click', function(e) {
     if(!input.value) {
         alert('할일을 입력해 주세요!');    
     }
     else {
-        // list를 출력할 <div> 요소생성
         const todo = document.createElement('li');
         todo.classList.add("todolist__item");
         todo.innerHTML = `${input.value}<button class="todolist__delete-button" type="button">-</button>`;
         lists.appendChild(todo);
-        input.value= ""
+        todo.addEventListener('click',deleteToDo );
+        input.value= "";
     }
-})
+});
 
 
-deleteBtn.addEventListener('click', function(e) {
-    // if (e.target.classList.contains('todolist__delete-button')) {
-    //     const removeLi = e.target.parentNode;
-    //     removeLi.remove();
-    // }
-
-    let remove = e.target.parentNode;
-    let parentNode = remove.parentNode;
-    parentNode.removeChild(remove);
-})
-
-
-    // deleteBtn.addEventListener('click', function(e) {
-        
-    // })
+deleteBtn.forEach((item)=>{
+    item.addEventListener('click', deleteToDo);
+});
 
 
 // addToDo.addEventListener('click', () => {    // 버튼에 클릭 이벤트가 발생하면

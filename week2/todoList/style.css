@@ -58,6 +58,7 @@ button:hover {
     padding: 15px;
 
     display: flex;
+    flex: 1;
     flex-direction: column;
     flex-wrap: wrap;
 
@@ -85,13 +86,20 @@ button:hover {
     display: flex;
 }
 
+.hidden {
+    display: none;
+    /* width: 0;
+    padding: 0;
+    margin: 0; */
+}
+
 .todolist__title {
     font-weight: 900;
     padding-bottom: 10px;
     border-bottom: 1px solid #bac2cc;
 }
 
-.todolist__today {
+/* .todolist__today {
     display: flex;
     flex: 1;
 }
@@ -99,7 +107,7 @@ button:hover {
 .todolist__tomorrow {
     display: flex;
     flex: 1;
-}
+} */
 
 .todolist__item {
     display: flex;
