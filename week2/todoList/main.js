@@ -43,12 +43,15 @@ all.addEventListener('click', function(e) {
     tomorrow.classList.remove("clicked");  
 });
 
-// 투두리스트 삭제 함수
+// 투두리스트 삭제
 function deleteToDo(e) {
     let remove = e.target.parentNode;
     let parentNode = remove.parentNode;
     parentNode.removeChild(remove);
 }
+deleteBtn.forEach((item)=>{
+    item.addEventListener('click', deleteToDo);
+});
 
 // 오늘 투두리스트 추가
 todayAddBtn.addEventListener('click', function(e) {
@@ -79,38 +82,3 @@ tomorrowAddBtn.addEventListener('click', function(e) {
         tomorrowInput.value= "";
     }
 });
-
-
-deleteBtn.forEach((item)=>{
-    item.addEventListener('click', deleteToDo);
-});
-
-
-// addToDo.addEventListener('click', () => {    // 버튼에 클릭 이벤트가 발생하면
-//     const todo = document.createElement('li');     // html 'li' 태그 만들기
-//     if (!inputToDo.value)            // 할 일 입력창에 내용이 입력되지 않으면 alert 발생
-//         alert('할일을 입력해 주세요!');
-//     else
-//     {
-//         todo.innerText = inputToDo.value;  // <li>입력된 할 일</li>
-//         todo.classList.add("todo");       // 할 일 리스트창에 자식으로 붙이기
-//         inputToDo.value= "";               // 할 일 입력창 초기화
-//     }
-
-//     check.addEventListener('click', function(){      // 만들어진 todo에 클릭 이벤트가 발생하면 줄 긋기
-//         todo.style.textDecoration = "line-through";
-//     })
-// });
-
-
-// deleteToDo.addEventListener('click', function(){   // todo에 클릭 이벤트가 발생하면 할 일 리스트창에서 지우기
-//     toDoList.removeChild(todo);
-// })
-
-
-// 인풋에 엔터 or 버튼을 눌렀을 때
-// >> 이벤트 핸들러
-// 리스트를 추가한다
-// li 태그를 만들어 그 안에 삭제 버튼을 넣기
-// li 태그를 ul 태그에 넣기
-
