@@ -87,7 +87,7 @@ button:hover {
 }
 
 .hidden {
-    /* display: none; DOM에서 요소를 완전히 제거하는 것. 스크린리더가 볼 수 없음 / visibility : hidden은?*/
+    /* display: none; DOM에서 요소를 완전히 제거하는 것. 스크린리더가 볼 수 없음 / visibility: hidden은?*/
     width: 0;
     height: 0;
     padding: 0;
@@ -102,16 +102,6 @@ button:hover {
     padding-bottom: 10px;
     border-bottom: 1px solid #bac2cc;
 }
-
-/* .todolist__today {
-    display: flex;
-    flex: 1;
-}
-
-.todolist__tomorrow {
-    display: flex;
-    flex: 1;
-} */
 
 .todolist__item {
     display: flex;

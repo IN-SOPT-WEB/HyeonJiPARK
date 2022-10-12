@@ -1,7 +1,6 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
-
 const today = $('.today'); // 오늘만 보기 버튼
 const tomorrow = $('.tomorrow'); // 내일만 보기 버튼
 const all = $('.all'); // 함께 보기 버튼
@@ -9,10 +8,16 @@ const all = $('.all'); // 함께 보기 버튼
 const todayPlan = $('.todolist__today'); // 오늘 투두리스트창
 const tomorrowPlan = $('.todolist__tomorrow'); // 내일 투두리스트창
 
-const toDoList = $('.box'); // 투두리스트창
-const lists = $('.todolist__lists'); // 투두리스트 목록
-const input = $('.todolist__input');  // 투두리스트 임력
-const addBtn = $('.todolist__add-button'); // 추가 버튼
+//today
+const todayLists = $('.todayLists'); // 투두리스트 목록
+const todayInput = $('.todayInput');  // 투두리스트 임력
+const todayAddBtn = $('.todayAddBtn'); // 추가 버튼
+
+//tomorrow
+const tomorrowLists = $('.tomorrowLists'); // 투두리스트 목록
+const tomorrowInput = $('.tomorrowInput');  // 투두리스트 임력
+const tomorrowAddBtn = $('.tomorrowAddBtn'); // 추가 버튼
+
 const deleteBtn = $$('.todolist__delete-button'); // 삭제 버튼
 
 // 오늘, 내일, 함께 보기
@@ -20,37 +25,50 @@ today.addEventListener('click', function(e) {
     tomorrowPlan.classList.add("hidden");
     todayPlan.classList.remove("hidden");
 });
-
 tomorrow.addEventListener('click', function(e) {
     todayPlan.classList.add("hidden");
     tomorrowPlan.classList.remove("hidden");
     tomorrowPlan.style.width = '100%';
 });
-
 all.addEventListener('click', function(e) {
     todayPlan.classList.remove("hidden");
     tomorrowPlan.classList.remove("hidden");
 });
 
 // 투두리스트 삭제 함수
-function deleteToDo(e)  {
+function deleteToDo(e) {
     let remove = e.target.parentNode;
     let parentNode = remove.parentNode;
     parentNode.removeChild(remove);
 }
 
-// 투두리스트 추가
-addBtn.addEventListener('click', function(e) {
-    if(!input.value) {
+// 오늘 투두리스트 추가
+todayAddBtn.addEventListener('click', function(e) {
+    if(!todayInput.value) {
         alert('할일을 입력해 주세요!');    
     }
     else {
         const todo = document.createElement('li');
         todo.classList.add("todolist__item");
-        todo.innerHTML = `${input.value}<button class="todolist__delete-button" type="button">-</button>`;
-        lists.appendChild(todo);
+        todo.innerHTML = `${todayInput.value}<button class="todolist__delete-button" type="button">-</button>`;
+        todayLists.appendChild(todo);
         todo.addEventListener('click',deleteToDo );
-        input.value= "";
+        todayInput.value= "";
+    }
+});
+
+// 내일 투두리스트 추가
+tomorrowAddBtn.addEventListener('click', function(e) {
+    if(!tomorrowInput.value) {
+        alert('할일을 입력해 주세요!');    
+    }
+    else {
+        const todo = document.createElement('li');
+        todo.classList.add("todolist__item");
+        todo.innerHTML = `${tomorrowInput.value}<button class="todolist__delete-button" type="button">-</button>`;
+        tomorrowLists.appendChild(todo);
+        todo.addEventListener('click',deleteToDo );
+        tomorrowInput.value= "";
     }
 });
 
