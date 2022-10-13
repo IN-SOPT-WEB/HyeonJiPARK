@@ -53,7 +53,8 @@ deleteBtn.forEach((item)=>{
     item.addEventListener('click', deleteToDo);
 });
 
-// 오늘 투두리스트 추가
+
+// 오늘 투두리스트 추가 (버튼 클릭)
 todayAddBtn.addEventListener('click', function(e) {
     if(!todayInput.value) {
         alert('할일을 입력해 주세요!');    
@@ -61,10 +62,24 @@ todayAddBtn.addEventListener('click', function(e) {
     else {
         const todo = document.createElement('li');
         todo.classList.add("todolist__item");
-        todo.innerHTML = `${todayInput.value}<button class="todolist__delete-button" type="button">-</button>`;
+        todo.innerHTML = `${todayInput.value}`;
+
+		const delBtn = document.createElement("button");
+        delBtn.classList.add("todolist__delete-button");
+		delBtn.innerHTML = `-`;
+		delBtn.addEventListener("click", deleteToDo);
+
         todayLists.appendChild(todo);
-        todo.addEventListener('click',deleteToDo );
+        todo.appendChild(delBtn);
+        
         todayInput.value= "";
+    }
+});
+// 오늘 투두리스트 추가 (엔터)
+todayInput.addEventListener('keydown', function(e) {
+    e.preventDefault();
+    if (e.keyCode === 13) {
+        todayAddBtn.click();
     }
 });
 
@@ -76,9 +91,23 @@ tomorrowAddBtn.addEventListener('click', function(e) {
     else {
         const todo = document.createElement('li');
         todo.classList.add("todolist__item");
-        todo.innerHTML = `${tomorrowInput.value}<button class="todolist__delete-button" type="button">-</button>`;
+        todo.innerHTML = `${tomorrowInput.value}`;
+
+		const delBtn = document.createElement("button");
+        delBtn.classList.add("todolist__delete-button");
+		delBtn.innerHTML = `-`;
+		delBtn.addEventListener("click", deleteToDo);
+
         tomorrowLists.appendChild(todo);
-        todo.addEventListener('click',deleteToDo );
+        todo.appendChild(delBtn);
+        
         tomorrowInput.value= "";
+    }
+});
+// 내일 투두리스트 추가 (엔터)
+tomorrowInput.addEventListener('keydown', function(e) {
+    e.preventDefault();
+    if (e.keyCode === 13) {
+        tomorrowAddBtn.click();
     }
 });
