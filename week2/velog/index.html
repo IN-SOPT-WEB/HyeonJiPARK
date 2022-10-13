@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">    
-    <script src="index.js"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="shortcut icon" href="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://velog.io/&size=16">
     <title>hyeonlog</title>
 </head>
 <body>
     <header class="header">
-        <h1>hyeonlog</h1>
+        <a class="header__logo" onClick="window.location.reload()">hyeonlog</a>
         <nav class="header__setting">
             <button class="material-icons header__lightmode">light_mode</button>
             <button class="material-icons header__search">search</button>
@@ -24,7 +23,7 @@
             </button>
         </nav>
     </header>
-
+    
     <nav class="nav">
         <div class="nav__wrapper">
             <ul class="nav__list">
@@ -37,10 +36,16 @@
                     <span>최신</span>
                 </li>
             </ul>
-            <button class="nav__dropdown">
-                <span>이번 주</span>
+            <div class="nav__dropdown">
+                <button class="dropdown__toggle">이번 주</button>
                 <span class="material-icons">arrow_drop_down</span>
-            </button>
+                <ul class="dropdown__content">
+                    <li class="dropdown__option">오늘</li>
+                    <li class="dropdown__option selected">이번 주</li>
+                    <li class="dropdown__option">이번 달</li>
+                    <li class="dropdown__option">올해</li>
+                </ul>
+            </div>
         </div>
         <span class="material-icons nav__more">more_vert</span>
     </nav>
@@ -206,5 +211,6 @@
             </footer>
         </article>
     </section>
+    <script src="./main.js"></script>
 </body>
 </html>

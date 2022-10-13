@@ -28,11 +28,11 @@ button:hover {
     align-items: center;
 }
 
-.header > h1 {
+.header__logo {
     font-size: 1.5rem;
     font-weight: 700;
 }
-.header > h1:hover {
+.header__logo:hover {
     cursor: pointer;
 }
 .header__setting {
@@ -138,16 +138,62 @@ button:hover {
 }
 
 .nav__dropdown {
+    width: 100px;
     height: 30px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    position: relative;
+	z-index: 1;
     gap: 10px;
 
     padding: 5px 10px;
 
     background-color: white;
-    border: none;
     border-radius: 5px;
+}
+
+.dropdown__toggle {
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.selected:hover {
+    color: gray;
+}
+
+.dropdown__content {
+	display: none;
+	position: absolute;
+    top: 40px;
+    left: -60px;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown__option {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+    border-bottom: 1px solid #ddd;
+	background-color: white;
+}
+
+.dropdown__option.selected {
+    color: #24bf91;
+}
+
+.dropdown__option:hover {
+	background-color: #ddd;
+}
+
+.show {
+	display: block;
 }
 
 .nav__dropdown > span {
