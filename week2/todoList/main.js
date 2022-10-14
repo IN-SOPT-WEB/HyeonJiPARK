@@ -66,7 +66,7 @@ todayAddBtn.addEventListener('click', function(e) {
 
 		const delBtn = document.createElement("button");
         delBtn.classList.add("todolist__delete-button");
-		delBtn.innerHTML = `-`;
+		delBtn.innerHTML = `X`;
 		delBtn.addEventListener("click", deleteToDo);
 
         todayLists.appendChild(todo);

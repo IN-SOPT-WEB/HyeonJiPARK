@@ -247,6 +247,7 @@ button:hover {
 .card:hover {
     top: -10px;
     box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
+    cursor: pointer;
 }
 
 .card__thumbnail {
@@ -329,6 +330,39 @@ button:hover {
     background-color: white;
 }
 
+/* ----------------- modal ----------------- */
+
+.modal__wrapper {
+    position: fixed;
+    top:0; left: 0; bottom: 0; right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index : 100;
+
+    display :flex; 
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content:center;
+    align-items :center;
+}
+
+.modal {
+    width:300px;
+    padding:20px 10px;
+    background:#fff;
+    border:2px solid #666;
+}
+
+.modal:hover {
+    top: 0px;
+}
+
+.modal__delete-button {
+    padding: 5px 10px;
+    border-radius: 30px;
+    color: white;
+    background-color: gray;
+    font-size: 1.3rem;
+}
 
 /* ---------------------------------- */
 

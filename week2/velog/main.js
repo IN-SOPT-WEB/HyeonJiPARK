@@ -1,6 +1,8 @@
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
-const dropdown = $(".nav__dropdown");
+
+// ------------------- 드롭다운 -----------------------
+const dropdown = $('.nav__dropdown');
 const toggle = $('.dropdown__toggle');
 const options = $$(".dropdown__option");
 const menu = $('.dropdown__content');
@@ -32,3 +34,40 @@ options.forEach(function(option) {
         dropdownSelected.classList.add('selected');
     })
 }) 
+
+// ------------------- 모달 -----------------------
+const cardSection = $('.section-card');
+const cards = $$('.card');
+const card = $('.card')
+
+// 모달창 생성
+function openModal(item) {
+    // 모달창 배경 생성
+    const modalWrapper = document.createElement("div");
+    modalWrapper.classList.add('modal__wrapper');
+    cardSection.appendChild(modalWrapper);
+    
+    // 모달 내용 생성
+    const newModal = item.cloneNode(true);
+    newModal.classList.add('modal');
+    modalWrapper.appendChild(newModal);
+
+    // 삭제 버튼 생성
+    const closeBtn = document.createElement("button");
+    closeBtn.classList.add('modal__delete-button');
+    closeBtn.innerHTML = `X`;
+    closeBtn.addEventListener("click", closeModal);
+    modalWrapper.appendChild(closeBtn);
+}
+cards.forEach((item)=>{
+    item.addEventListener('click', () => {
+        openModal(item)
+    });
+});
+
+// 모달창 삭제
+function closeModal(e) {
+    let remove = e.target.parentNode;
+    let parentNode = remove.parentNode;
+    parentNode.removeChild(remove);
+}
