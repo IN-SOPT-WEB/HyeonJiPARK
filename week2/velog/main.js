@@ -71,3 +71,42 @@ function closeModal(e) {
     let parentNode = remove.parentNode;
     parentNode.removeChild(remove);
 }
+
+// ------------------- 슬라이더 -----------------------
+
+const prevBtn = document.querySelector(".slider__prev-button");
+const nextBtn = document.querySelector(".slider__next-button");
+
+const sliderSection = $('.section-silder');
+const sliderCard = $('.card-wrapper');
+const sliderCards = $$('.sliderCard');
+
+const maxSlide = sliderCards.length;
+let currSlide = 0;
+
+// 슬라이드 전체 크기(width 구하기)
+let slideWidth = sliderSection.offsetWidth;
+
+// 다음 슬라이드로 넘기기
+nextBtn.addEventListener("click", () => {
+    currSlide += 1;
+    if (currSlide < maxSlide-1) {
+        const offset = slideWidth * (currSlide-1);
+        sliderCards.forEach((i) => {
+            i.setAttribute("style", `left: ${-offset}px`);
+        });
+    }
+    console.log(currSlide);
+});
+
+// 이전 슬라이드로 넘기기
+prevBtn.addEventListener("click", () => {
+    currSlide -= 1;
+    if (currSlide > 0) {
+        const offset = slideWidth * (currSlide-1);
+        sliderCards.forEach((i) => {
+            sliderCard.style.transform = `translateX(${-offset}px)`;
+        });
+    }
+    console.log(currSlide);
+});
