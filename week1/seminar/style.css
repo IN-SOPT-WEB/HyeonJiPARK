@@ -1,0 +1,8 @@
+@import url(./subStyle.css);
+body{
+    /* color: blue; */
+}
+
+ul > li{
+    color: blue;
+}
