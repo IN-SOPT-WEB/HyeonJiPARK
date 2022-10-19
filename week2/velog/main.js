@@ -2,10 +2,12 @@ const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => document.querySelectorAll(selector);
 
 // ------------------- 드롭다운 -----------------------
+const body = $(".body");
 const dropdown = $('.nav__dropdown');
 const toggle = $('.dropdown__toggle');
 const options = $$(".dropdown__option");
 const menu = $('.dropdown__content');
+
 
 // 드롭다운 열기
 dropdown.addEventListener('click', function() {
@@ -13,8 +15,10 @@ dropdown.addEventListener('click', function() {
 });
 
 // 다른 곳을 클릭했을 때 드롭다운 닫힘
-dropdown.addEventListener('blur', function() {
-    menu.classList.remove('show');
+body.addEventListener('click', function(e) {
+    if(e.target.parentNode != e.currentTarget.querySelector(".nav__dropdown")){
+        menu.classList.remove('show');
+    }
 });
 
 // 드롭다운 옵션 선택
@@ -63,9 +67,13 @@ cards.forEach((item)=>{
     item.addEventListener('click', () => {
         openModal(item)
     });
-    item.addEventListener('blur', () => {
-        closeModal(item)
-    });
+});
+
+// 다른 곳을 클릭했을 때 모달창 닫힘
+body.addEventListener('click', function(e) {
+    if(e.target == e.currentTarget.querySelector(".modal__wrapper")){
+        body.removeChild(e.target);
+    }
 });
 
 // 모달창 삭제
