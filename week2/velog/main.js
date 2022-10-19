@@ -63,6 +63,9 @@ cards.forEach((item)=>{
     item.addEventListener('click', () => {
         openModal(item)
     });
+    item.addEventListener('blur', () => {
+        closeModal(item)
+    });
 });
 
 // 모달창 삭제

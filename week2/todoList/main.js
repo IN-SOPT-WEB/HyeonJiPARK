@@ -62,11 +62,11 @@ todayAddBtn.addEventListener('click', function(e) {
     else {
         const todo = document.createElement('li');
         todo.classList.add("todolist__item");
-        todo.innerHTML = `${todayInput.value}`;
+        todo.innerHTML = todayInput.value;
 
 		const delBtn = document.createElement("button");
         delBtn.classList.add("todolist__delete-button");
-		delBtn.innerHTML = `X`;
+		delBtn.innerHTML = `-`;
 		delBtn.addEventListener("click", deleteToDo);
 
         todayLists.appendChild(todo);
@@ -91,7 +91,7 @@ tomorrowAddBtn.addEventListener('click', function(e) {
     else {
         const todo = document.createElement('li');
         todo.classList.add("todolist__item");
-        todo.innerHTML = `${tomorrowInput.value}`;
+        todo.innerHTML = tomorrowInput.value;
 
 		const delBtn = document.createElement("button");
         delBtn.classList.add("todolist__delete-button");
