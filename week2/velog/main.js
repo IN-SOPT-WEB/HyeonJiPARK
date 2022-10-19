@@ -36,7 +36,7 @@ options.forEach(function(option) {
 }) 
 
 // ------------------- 모달 -----------------------
-const cardSection = $('.section-card');
+const cardSection = $('.body');
 const cards = $$('.card');
 const card = $('.card')
 
@@ -73,40 +73,27 @@ function closeModal(e) {
 }
 
 // ------------------- 슬라이더 -----------------------
-
-const prevBtn = document.querySelector(".slider__prev-button");
-const nextBtn = document.querySelector(".slider__next-button");
-
 const sliderSection = $('.section-silder');
-const sliderCard = $('.card-wrapper');
-const sliderCards = $$('.sliderCard');
+const sliderCard = sliderSection.querySelector('.card-wrapper');
+const sliderCards = sliderSection.querySelectorAll('.card');
+
+const prevBtn = $(".slider__prev-button");
+const nextBtn = $(".slider__next-button");
 
 const maxSlide = sliderCards.length;
-let currSlide = 0;
-
-// 슬라이드 전체 크기(width 구하기)
-let slideWidth = sliderSection.offsetWidth;
+let slideWidth = sliderCards[0].clientWidth;
+let currSlide = 1;
 
 // 다음 슬라이드로 넘기기
 nextBtn.addEventListener("click", () => {
-    currSlide += 1;
-    if (currSlide < maxSlide-1) {
-        const offset = slideWidth * (currSlide-1);
-        sliderCards.forEach((i) => {
-            i.setAttribute("style", `left: ${-offset}px`);
-        });
-    }
-    console.log(currSlide);
+    if (currSlide >= maxSlide - 2) return;
+    currSlide++;
+    sliderCard.style.transform = `translateX(${-slideWidth*(currSlide-1)-30*(currSlide-1)}px)`;
 });
 
 // 이전 슬라이드로 넘기기
 prevBtn.addEventListener("click", () => {
-    currSlide -= 1;
-    if (currSlide > 0) {
-        const offset = slideWidth * (currSlide-1);
-        sliderCards.forEach((i) => {
-            sliderCard.style.transform = `translateX(${-offset}px)`;
-        });
-    }
-    console.log(currSlide);
+    if (currSlide <= 1) return;
+    currSlide--;
+    sliderCard.style.transform = `translateX(${-slideWidth*(currSlide-1)-30*(currSlide-1)}px)`;
 });
