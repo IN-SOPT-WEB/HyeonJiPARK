@@ -45,14 +45,11 @@ all.addEventListener('click', function(e) {
 
 // 투두리스트 삭제
 function deleteToDo(e) {
-    let remove = e.target.parentNode;
-    let parentNode = remove.parentNode;
-    parentNode.removeChild(remove);
+    e.target.parentElement.remove();
 }
 deleteBtn.forEach((item)=>{
     item.addEventListener('click', deleteToDo);
 });
-
 
 // 오늘 투두리스트 추가 (버튼 클릭)
 todayAddBtn.addEventListener('click', function(e) {
@@ -77,7 +74,6 @@ todayAddBtn.addEventListener('click', function(e) {
 });
 // 오늘 투두리스트 추가 (엔터)
 todayInput.addEventListener('keydown', function(e) {
-    e.preventDefault();
     if (e.keyCode === 13) {
         todayAddBtn.click();
     }
@@ -106,7 +102,6 @@ tomorrowAddBtn.addEventListener('click', function(e) {
 });
 // 내일 투두리스트 추가 (엔터)
 tomorrowInput.addEventListener('keydown', function(e) {
-    e.preventDefault();
     if (e.keyCode === 13) {
         tomorrowAddBtn.click();
     }

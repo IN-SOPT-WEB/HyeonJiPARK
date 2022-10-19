@@ -8,7 +8,6 @@ const toggle = $('.dropdown__toggle');
 const options = $$(".dropdown__option");
 const menu = $('.dropdown__content');
 
-
 // 드롭다운 열기
 dropdown.addEventListener('click', function() {
     menu.classList.toggle('show');
@@ -29,15 +28,13 @@ options.forEach(function(option) {
             option.classList.remove('selected');
         })
         // 드롭다운 라벨에 표시
-        const dropdownLabel = e.currentTarget.textContent;
-        toggle.textContent = dropdownLabel;
+        toggle.textContent = e.currentTarget.textContent;
         toggle.classList.add('selected');
 
         // 드롭다운 목록에 표시
-        const dropdownSelected = e.currentTarget;
-        dropdownSelected.classList.add('selected');
+        e.currentTarget.classList.add('selected');
     })
-}) 
+})
 
 // ------------------- 모달 -----------------------
 const cardSection = $('.body');
@@ -78,9 +75,7 @@ body.addEventListener('click', function(e) {
 
 // 모달창 삭제
 function closeModal(e) {
-    let remove = e.target.parentNode;
-    let parentNode = remove.parentNode;
-    parentNode.removeChild(remove);
+    body.removeChild(e.target.parentNode);
 }
 
 // ------------------- 슬라이더 -----------------------
@@ -93,18 +88,18 @@ const nextBtn = $(".slider__next-button");
 
 const maxSlide = sliderCards.length;
 let slideWidth = sliderCards[0].clientWidth;
-let currSlide = 1;
+let currentSlide = 1;
 
 // 다음 슬라이드로 넘기기
 nextBtn.addEventListener("click", () => {
-    if (currSlide >= maxSlide - 2) return;
-    currSlide++;
-    sliderCard.style.transform = `translateX(${-slideWidth*(currSlide-1)-30*(currSlide-1)}px)`;
+    if (currentSlide >= maxSlide - 2) return;
+    currentSlide++;
+    sliderCard.style.transform = `translateX(${-slideWidth*(currentSlide-1)-30*(currentSlide-1)}px)`;
 });
 
 // 이전 슬라이드로 넘기기
 prevBtn.addEventListener("click", () => {
-    if (currSlide <= 1) return;
-    currSlide--;
-    sliderCard.style.transform = `translateX(${-slideWidth*(currSlide-1)-30*(currSlide-1)}px)`;
+    if (currentSlide <= 1) return;
+    currentSlide--;
+    sliderCard.style.transform = `translateX(${-slideWidth*(currentSlide-1)-30*(currentSlide-1)}px)`;
 });
