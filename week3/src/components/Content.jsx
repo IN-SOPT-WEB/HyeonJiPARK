@@ -1,16 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
+import confetti from "https://cdn.skypack.dev/canvas-confetti@1";
 
 const names = [
+    "김남준",
+    "김서현",
+    "김현수",
     "김형겸",
+    "나림",
     "류성경",
+    "문서연",
     "박현지",
     "서지수",
+    "서혜은",
+    "송하윤",
+    "유준상",
+    "윤지영",
+    "이서영",
+    "이주함",
     "장명지",
     "정재욱",
     "정현욱",
+    "최유진",
     "최은형",
+    "한예원",
+    "홍명헌",
+    "홍서희",
 ];
 
 export default function Content() {
@@ -45,6 +61,7 @@ export default function Content() {
             // 정답 모달
             setMessage("정답!!!!😆 +1점!!");
             setIsOpen(true);
+            onClickAnswer();
             setScore((prev) => prev + 1);
         } else {
             // 오답 모달
@@ -54,6 +71,15 @@ export default function Content() {
         }
         setMembers((prev) => [...prev].sort(() => Math.random() - 0.5));
     };
+
+    // 정답 선택 시 애니메이션
+    const onClickAnswer = useCallback(() => {
+        confetti({
+            particleCount: 150,
+            spread: 60,
+            zIndex: 1000,
+        });
+    }, []);
 
     // 다시 하기 클릭 시 초기화
     const onClickRestart = () => {
