@@ -1,7 +1,4 @@
 import React, { useEffect } from 'react';
-import Score from './Content/Score';
-// import Game from './Content/Game';
-import Restart from './Content/Restart';
 import { useState } from 'react';
 import styled from "styled-components";
 
@@ -28,52 +25,68 @@ export default function Content() {
         setAnswer(options[parseInt(Math.random()*5)]);
     }, [options])
 
+    // 선지 클릭 시
     const onClickOption = (e) => {
         if (e.currentTarget.innerText === answer.person) {
             setScore((prev) => (prev+1));
-            console.log("정답!");
-
+            if (score >= 4) {
+                // 점수 5점 이상 되면 성공 
+                console.log("잘해써!!");
+            }
         }
         else {
-            console.log("땡!");
-            setScore((prev) => (prev-1));
-            
+            if (score <= 0) {
+                // 점수 0점 미만 되면 실패
+                console.log("실망입니다...");
+            }
+            else {
+                setScore((prev) => (prev-1));
+            }
         }
         setMembers((prev) => [...prev].sort(() => Math.random() - 0.5))
     }
-
+    // 다시 하기 클릭 시
+    const onClickRestart = () => {
+        // 점수 0으로 초기화, 첫 번째 문제로 가기
+        console.log("다시하기 누름");
+        window.location.reload();
+    }
     return (
         <div>
-            <Score score={score}/>
+            <MyScore>⭐️ 내 점수는 : {score}점 ⭐️</MyScore>
             <Container>
-                <Image src={answer.image} />
-
+                <QuestionImg src={answer.image} />
                 {options.map((option) => (
-                    <Button onClick={onClickOption}>{option.person}</Button>
+                    <OptionBtn onClick={onClickOption}>{option.person}</OptionBtn>
                 ))}
-
+                <RestartBtn onClick={onClickRestart}>다시 하기</RestartBtn>
             </Container>
-            <Restart />
         </div>
     )
 }
-
+const MyScore = styled.h2`
+    display: flex;
+    justify-content: center;
+    padding: 5px 0px;
+    color: white;
+    font-size: 1rem;
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+` 
 const Container = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /* width: 100vh; */
 `
-
-const Image = styled.img`
+const QuestionImg = styled.img`
     width: 300px;
     height: 300px;
     object-fit: cover;
     margin: 20px auto;
     border-radius: 20px;
+    box-shadow: 10px 8px 0px rgb(191 219 254);
 `
-
-const Button = styled.button`
+const OptionBtn = styled.button`
     margin: 5px auto;
     padding: 6px 12px;
     width: 250px;
@@ -92,3 +105,25 @@ const Button = styled.button`
         cursor: pointer;
     }
 `
+const RestartBtn = styled.button`
+    margin: 20px 0px;
+    padding: 6px 12px;
+
+    border-radius: 8px;
+    border: 1px solid black;
+    box-shadow: 0px 5px 0px 0px #194d93;
+    color: white;
+    background-color: #194d93;
+
+    font-family: 'Galmuri9';
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: all 150ms ease-in-out;
+
+    &:hover{  
+        color : #194d93;
+        background-color : white;
+        cursor: pointer;
+    }
+` 

@@ -19,5 +19,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: white;
+  font-family: 'Galmuri9';
+  background-color: #EFF6FF;
 `

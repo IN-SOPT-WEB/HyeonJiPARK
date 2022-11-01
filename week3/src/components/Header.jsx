@@ -14,7 +14,6 @@ const Title = styled.div`
     height: 70px;
 
     color: #1384cd;
-    font-family: "Galmuri9";
     font-size: 1.8rem;
     font-weight: 700;
 `
