@@ -14,19 +14,23 @@ const names = [
 ];
 
 export default function Content() {
+    // 점수
     const [score, setScore] = useState(0);
+    // 문제
     const [members, setMembers] = useState(
         names.map((name) => ({
             person: name,
             image: `assets/${name}.jpg`,
         }))
     );
+    // 선지, 정답
     const [options, setOptions] = useState(members.slice(0, 5));
     const [answer, setAnswer] = useState(options[parseInt(Math.random() * 5)]);
     // 모달
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState("");
 
+    // 문제 랜덤 생성
     useEffect(() => {
         setOptions(members.slice(0, 5));
     }, [members]);
@@ -35,34 +39,23 @@ export default function Content() {
         setAnswer(options[parseInt(Math.random() * 5)]);
     }, [options]);
 
-    // 선지 클릭 시
+    // 선지 클릭 시 정답, 오답 모달 생성 및 점수 변경
     const onClickOption = (e) => {
         if (e.currentTarget.innerText === answer.person) {
-            setScore((prev) => prev + 1);
-            // 정답 모달 넣기
+            // 정답 모달
             setMessage("정답!!!!😆 +1점!!");
             setIsOpen(true);
-            if (score >= 4) {
-                // 점수 5점 이상 되면 성공
-                // setMessage("😇😇😇 CLEAR !!! 😇😇😇");
-                // setIsOpen(true);
-            }
+            setScore((prev) => prev + 1);
         } else {
-            if (score <= 0) {
-                // 점수 0점 미만 되면 실패
-                // setMessage("👿👿👿 GAME OVER 👿👿👿");
-                // setIsOpen(true);
-            } else {
-                // 오답 모달 넣기
-                setMessage("실망이야....-1점!!!😡");
-                setIsOpen(true);
-                setScore((prev) => prev - 1);
-            }
+            // 오답 모달
+            setMessage("실망이야....-1점!!!😡");
+            setIsOpen(true);
+            setScore((prev) => prev - 1);
         }
         setMembers((prev) => [...prev].sort(() => Math.random() - 0.5));
     };
 
-    // 다시 하기 클릭 시
+    // 다시 하기 클릭 시 초기화
     const onClickRestart = () => {
         window.location.reload();
     };
@@ -71,12 +64,28 @@ export default function Content() {
         <div>
             <MyScore>⭐️ 내 점수는 : {score}점 ⭐️</MyScore>
             <Container>
-                <QuestionImg src={answer.image} />
-                {options.map((option) => (
-                    <OptionBtn onClick={onClickOption}>
-                        {option.person}
-                    </OptionBtn>
-                ))}
+                {/* 점수 5정 이상이면 성공, 0점 미만이면 실패*/}
+                {score >= 5 ? (
+                    <Ending>
+                        <img src="../assets/win.gif" alt="game over" />
+                        😇😇😇 YOU WIN !!! 😇😇😇
+                    </Ending>
+                ) : score < 0 ? (
+                    <Ending>
+                        <img src="../assets/over.gif" alt="game over" />
+                        👿👿👿 GAME OVER 👿👿👿
+                    </Ending>
+                ) : (
+                    <>
+                        <QuestionImg src={answer.image} />
+                        {options.map((option) => (
+                            <OptionBtn onClick={onClickOption}>
+                                {option.person}
+                            </OptionBtn>
+                        ))}
+                    </>
+                )}
+
                 <RestartBtn onClick={onClickRestart}>다시 하기</RestartBtn>
                 <Modal open={isOpen} onClose={() => setIsOpen(false)}>
                     {message}
@@ -90,6 +99,7 @@ export default function Content() {
 const MyScore = styled.h2`
     display: flex;
     justify-content: center;
+    width: 300px;
     padding: 5px 0px;
     color: white;
     font-size: 1rem;
@@ -106,6 +116,18 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+`;
+const Ending = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 500px;
+
+    > img {
+        width: 300px;
+    }
 `;
 const QuestionImg = styled.img`
     width: 300px;

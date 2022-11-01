@@ -16,6 +16,8 @@ export default function Modal({ open, children, onClose }) {
         document.getElementById("portal")
     );
 }
+
+// ----------------------------- style -----------------------------
 const ModalBackground = styled.div`
     position: fixed;
     top: 0;
