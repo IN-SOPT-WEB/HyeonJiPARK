@@ -46,6 +46,7 @@ function openModal(item) {
     // 모달창 배경 생성
     const modalWrapper = document.createElement("div");
     modalWrapper.classList.add('modal__wrapper');
+    cardSection.style.overflow = "hidden";
     cardSection.appendChild(modalWrapper);
     
     // 모달 내용 생성
@@ -70,12 +71,14 @@ cards.forEach((item)=>{
 body.addEventListener('click', function(e) {
     if(e.target == e.currentTarget.querySelector(".modal__wrapper")){
         body.removeChild(e.target);
+        cardSection.style.overflow = "unset";
     }
 });
 
 // 모달창 삭제
 function closeModal(e) {
     body.removeChild(e.target.parentNode);
+    cardSection.style.overflow = "unset";
 }
 
 // ------------------- 슬라이더 -----------------------
