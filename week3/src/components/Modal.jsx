@@ -17,7 +17,6 @@ export default function Modal({ open, children, onClose }) {
     );
 }
 
-// ----------------------------- style -----------------------------
 const ModalBackground = styled.div`
     position: fixed;
     top: 0;
