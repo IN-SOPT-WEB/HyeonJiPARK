@@ -46,11 +46,12 @@ export default function Content() {
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState("");
 
-    // 문제 랜덤 생성
+    // 2) member가 섞일 때마다 배열 맨 앞에 있는 5개를 option으로 변경
     useEffect(() => {
         setOptions(members.slice(0, 5));
     }, [members]);
 
+    // 3) onption이 바뀔 때마다 정답 선택 (0~4 중 하나)
     useEffect(() => {
         setAnswer(options[parseInt(Math.random() * 5)]);
     }, [options]);
@@ -69,6 +70,8 @@ export default function Content() {
             setIsOpen(true);
             setScore((prev) => prev - 1);
         }
+        // 1) 선지 클릭 후 member 섞기(sort)
+        // sort()는 음수, 양수, 0의 결과 값에 따라 정렬을 하는데, Math.random() - 0.5는 무작위로 음수, 양수, 0을 리턴하기 때문에 배열이 무작위로 정렬된다. (Math.random()는 0이상 1미만의 숫자를 리턴함)
         setMembers((prev) => [...prev].sort(() => Math.random() - 0.5));
     };
 
@@ -111,7 +114,6 @@ export default function Content() {
                         ))}
                     </>
                 )}
-
                 <RestartBtn onClick={onClickRestart}>다시 하기</RestartBtn>
                 <Modal open={isOpen} onClose={() => setIsOpen(false)}>
                     {message}
@@ -167,13 +169,11 @@ const OptionBtn = styled.button`
     margin: 5px auto;
     padding: 6px 12px;
     width: 250px;
-
     border-radius: 8px;
     border: 1px solid black;
     box-shadow: 0px 5px 0px 0px #009aed;
     background-color: white;
     font-family: "Galmuri9";
-
     transition: 0.2s;
 
     &:hover {
@@ -185,17 +185,14 @@ const OptionBtn = styled.button`
 const RestartBtn = styled.button`
     margin: 20px 0px;
     padding: 6px 12px;
-
     border-radius: 8px;
     border: 1px solid black;
     box-shadow: 0px 5px 0px 0px #194d93;
     color: white;
     background-color: #194d93;
-
     font-family: "Galmuri9";
     font-size: 1rem;
     font-weight: 600;
-
     transition: all 150ms ease-in-out;
 
     &:hover {
