@@ -3,14 +3,18 @@ import styled from "styled-components";
 
 export default function Header() {
     return (
-        <Title>당신누구야!!!</Title>
+        <Title>진짜 궁금하다...당신..</Title>
     )
 }
 
 const Title = styled.div`
     display: flex;
     justify-content: center;
-    background-color: white;
-    color: blue;
-    width: 100%;
+    align-items: center;
+    height: 70px;
+
+    color: #1384cd;
+    font-family: "Galmuri9";
+    font-size: 1.8rem;
+    font-weight: 700;
 `

@@ -1,5 +1,7 @@
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
 body {
     margin: 0 auto;
     height: 100vh;
-    background-color: #212124;
+    background-color: #cbddef;
+    font-family: 'Galmuri9';
 }

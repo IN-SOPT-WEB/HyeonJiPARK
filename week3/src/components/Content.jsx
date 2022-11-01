@@ -62,13 +62,33 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
+    /* width: 100vh; */
 `
 
 const Image = styled.img`
     width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin: 20px auto;
     border-radius: 20px;
 `
 
 const Button = styled.button`
-    color: red
+    margin: 5px auto;
+    padding: 6px 12px;
+    width: 250px;
+
+    border-radius: 8px;
+    border: 1px solid black;
+    box-shadow: 0px 5px 0px 0px #009aed;
+    background-color : white;
+    font-family: 'Galmuri9';
+
+    transition: 0.2s;
+
+    &:hover{  
+        color : white;
+        background-color : #009aed;
+        cursor: pointer;
+    }
 `
