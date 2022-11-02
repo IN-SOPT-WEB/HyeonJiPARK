@@ -76,7 +76,9 @@ CSS-in-JS 방식을 사용하는 라이브러리에는 styled-components 이외
 -   styled component보다 파일 사이즈가 작고, SSR(서버 사이드 렌더링)시 서버 작업이 필요없음
 
 -   **사용 방법**
+
     > 객체형 스타일
+
     ```jsx
     import { css } from "@emotion/react";
 
@@ -92,7 +94,9 @@ CSS-in-JS 방식을 사용하는 라이브러리에는 styled-components 이외
         );
     }
     ```
+
     > 문자형 스타일
+
     ```jsx
     import { css } from "@emotion/react";
 
@@ -116,6 +120,7 @@ CSS-in-JS 방식을 사용하는 라이브러리에는 styled-components 이외
 -   브라우저, 서버 또는 Node.js를 사용하여 빌드 시 컴파일할 수 있음
 
 -   **사용 방법**
+
     ```jsx
     import React from "react";
     import injectSheet from "react-jss";
@@ -176,6 +181,5 @@ styled-component는 커뮤니티도 매우 커지고 있고, 컴포넌트 기반
 
 ## 📝 참고 문서
 
-[](https://nykim.work/107)
-
-[https://s-core.co.kr/insight/view/웹-컴포넌트-스타일링-관리-css-in-js-vs-css-in-css/#:~:text=단점으로는 러닝 커브,CSS 문법에 친화적이다](https://s-core.co.kr/insight/view/%EC%9B%B9-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%8A%A4%ED%83%80%EC%9D%BC%EB%A7%81-%EA%B4%80%EB%A6%AC-css-in-js-vs-css-in-css/#:~:text=%EB%8B%A8%EC%A0%90%EC%9C%BC%EB%A1%9C%EB%8A%94%20%EB%9F%AC%EB%8B%9D%20%EC%BB%A4%EB%B8%8C,CSS%20%EB%AC%B8%EB%B2%95%EC%97%90%20%EC%B9%9C%ED%99%94%EC%A0%81%EC%9D%B4%EB%8B%A4).
+[[ReactJS] 4. styled-components](https://nykim.work/107)
+[웹 컴포넌트 스타일링 관리: CSS-in-JS vs CSS-in-CSS](https://s-core.co.kr/insight/view/%EC%9B%B9-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%8A%A4%ED%83%80%EC%9D%BC%EB%A7%81-%EA%B4%80%EB%A6%AC-css-in-js-vs-css-in-css/#:~:text=%EB%8B%A8%EC%A0%90%EC%9C%BC%EB%A1%9C%EB%8A%94%20%EB%9F%AC%EB%8B%9D%20%EC%BB%A4%EB%B8%8C,CSS%20%EB%AC%B8%EB%B2%95%EC%97%90%20%EC%B9%9C%ED%99%94%EC%A0%81%EC%9D%B4%EB%8B%A4).
