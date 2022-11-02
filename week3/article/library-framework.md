@@ -17,7 +17,7 @@
 
 ## 💡 **React / Vue / Angular / Svelte 의 차이점은?**
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b649b3c9-1ed1-4f24-8e5f-1e266d8a9421/Untitled.png)
+![프레임워크](https://user-images.githubusercontent.com/73213437/199579625-0fc395a6-0a2a-47f9-8b30-648ae1b995a1.png)
 
 ### 1. React
 
@@ -70,13 +70,13 @@ Vue는 유연하고 가벼운 JavaScript 기반 프레임워크입니다. 앵�
 
 ### 👨🏻‍💻 가장 많이 사용되는 순서
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1692575b-b01f-479d-962e-53ce042c3e57/Untitled.png)
+![많이사용되는순서](https://user-images.githubusercontent.com/73213437/199579614-1a41a202-bf3c-4b6e-af7f-858e78b58647.png)
 
 > React > Vue > Angular > Svelte 로, React가 가장 많이 사용되고 있습니다.
 
 ### 📈 성능
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/734d7b79-790d-4ed7-a48d-829c8f9f6cb8/Untitled.png)
+![성능](https://user-images.githubusercontent.com/73213437/199579620-de469a5f-f9fb-481e-a6f0-04571c5e53f2.png)
 
 > Svelte > Vue > Angular > React으로, Svelte가 압도적인 성능을 가지고 있습니다.
 
