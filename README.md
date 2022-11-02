@@ -14,8 +14,8 @@
 | 2주차 | ✅ TodoList+JS ⭐️                | ☑️  | [링크](https://github.com/IN-SOPT-WEB/HyeonJiPARK/pull/2 "🔗링크") |
 | 2주차 | 💻 Hyeonlog+JS ⭐️                | ☑️  | [링크](https://github.com/IN-SOPT-WEB/HyeonJiPARK/pull/2 "🔗링크") |
 | 2주차 | 📝 타입스크립트                   |     |                                                                    |
-| 3주차 | 😎 진짜 궁금하다...당신           | ☑️  |                                                                    |
-| 3주차 | 📝 React / Vue / Angular / Svelte |     |                                                                    |
-| 3주차 | 📝 styled-components              |     |                                                                    |
+| 3주차 | 😎 진짜 궁금하다...당신           | ☑️  | [링크](https://github.com/IN-SOPT-WEB/HyeonJiPARK/pull/4 "🔗링크") |
+| 3주차 | 📝 React / Vue / Angular / Svelte | ☑️  | [링크](https://github.com/IN-SOPT-WEB/HyeonJiPARK/pull/6 "🔗링크") |
+| 3주차 | 📝 styled-components              | ☑️  | [링크](https://github.com/IN-SOPT-WEB/HyeonJiPARK/pull/6 "🔗링크") |
 
 </div>
