@@ -5,7 +5,7 @@ export default function App() {
   useEffect(() => {
     getGithubProfile();
   }, []);
-  return <div>뇸!</div>;
+  return <div></div>;
 }
 
 async function getGithubProfile() {
