@@ -1,25 +1,25 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import axios from "axios";
 
 export default function SearchPage() {
-  const [text, setText] = useState("");
+  const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
-  const searchUsers = async (text) => {
-    const response = await axios.get(`https://api.github.com/users/${text}`);
-    console.log("data", response.data);
+  const searchUsers = (username) => {
+    navigate(`/search/${username}`);
   };
 
-  const handleChange = (e) => setText(e.target.value);
+  const handleChange = (e) => setUsername(e.target.value);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (text === "") {
+    if (username === "") {
       console.log("아이디를 입력하세요");
     } else {
-      searchUsers(text);
-      setText("");
+      searchUsers(username);
+      setUsername("");
     }
   };
 
@@ -31,7 +31,7 @@ export default function SearchPage() {
           type="text"
           name="text"
           placeholder="깃헙 아이디를 입력해주세요"
-          value={text}
+          value={username}
           onChange={handleChange}
         />
         <SearchButton type="submit" value="검색" />

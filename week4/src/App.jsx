@@ -1,13 +1,10 @@
 import React from "react";
-// import AsyncAwaitExample from "./components/AsyncAwaitExample";
-import SearchPage from "./components/SearchPage";
-import UserPage from "./components/UserPage";
+import Router from "./Router";
 
 function App() {
   return (
     <div className="App">
-      <SearchPage />
-      <UserPage />
+      <Router />
     </div>
   );
 }

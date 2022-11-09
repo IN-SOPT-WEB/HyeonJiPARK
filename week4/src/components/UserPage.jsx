@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 
 export default function UserPage() {
-  return <UserContainer></UserContainer>;
+  const { username } = useParams();
+
+  const getUser = async (username) => {
+    const response = await axios.get(
+      `https://api.github.com/users/${username}`
+    );
+    console.log("data", response.data);
+  };
+
+  useEffect(() => {
+    getUser(username);
+  }, []);
+
+  console.log(username);
+  return <UserContainer>ddsfsfds</UserContainer>;
 }
 
 const UserContainer = styled.article`
