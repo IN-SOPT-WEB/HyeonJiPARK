@@ -4,13 +4,13 @@ import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function SearchPage() {
-  let history = []; // 검색 히스토리를 저장할 배열
+  let [history, setHistory] = useState([]); // 검색 히스토리를 저장할 객체
   const historyStorage = localStorage.getItem("history"); // 히스토리 로컬스토리지 저장소
 
   // 히스토리 로컬스토리지 저장
-  function setLocalStorage() {
+  const setLocalStorage = () => {
     localStorage.setItem("history", JSON.stringify(history));
-  }
+  };
 
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
@@ -37,23 +37,23 @@ export default function SearchPage() {
   };
 
   // 히스토리가 새로고침해도 남아있게 하기 위해서 init
-  function initHistory() {
+  const initHistory = () => {
     if (historyStorage != null) {
       history = JSON.parse(historyStorage);
     }
-  }
+  };
 
-  function setDropdown() {
+  const setDropdown = () => {
     const curHistory = JSON.parse(historyStorage);
-    curHistory.forEach((_curhistory) => {
-      // const loadedTag = document.createElement("li");
-      // loadedTag.classList.add("tag__item");
-      // loadedTag.innerHTML = _tag;
-      // tagList.appendChild(loadedTag);
-      // loadedTag.addEventListener('click', deleteTag );
-    });
-  }
+    curHistory.forEach((_curhistory) => {});
+  };
 
+  const onClickDelete = (_history) => {
+    const num = history.indexOf(_history);
+
+    setHistory(history.splice(num, 1));
+    setLocalStorage();
+  };
   return (
     <>
       <SearchContainer>
@@ -70,8 +70,14 @@ export default function SearchPage() {
           <SearchButton type="submit" value="검색" />
         </SearchBar>
         <SearchHistories>
-          <SearchHistory>iamphj3</SearchHistory>
-          <SearchHistory>ddddd</SearchHistory>
+          {history.map((_history) => (
+            <SearchHistory>
+              {_history}
+              <DeleteButton onClick={() => onClickDelete(_history)}>
+                X
+              </DeleteButton>
+            </SearchHistory>
+          ))}
         </SearchHistories>
       </SearchContainer>
       <Outlet />
@@ -133,8 +139,16 @@ const SearchHistories = styled.div`
 
   padding: 5px 10px;
 
-  background-color: red;
-  border-radius: 5px;
+  background-color: blue;
 `;
 
-const SearchHistory = styled.div``;
+const SearchHistory = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(255, 0, 255, 0.8);
+`;
+
+const DeleteButton = styled.button``;
