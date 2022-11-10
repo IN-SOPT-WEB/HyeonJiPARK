@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
-export default function UserPage({ name, avatar_url, followers, following }) {
+export default function UserPage() {
   const { username } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
-
   const getUser = async (username) => {
     const response = await axios.get(
-      `https://api.github.com/users/${username}`
-      //   `https://api.github.com/users/iamphj3`
+      `https://api.github.com/users/${username}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN}`,
+        },
+      }
     );
-    console.log("data", response.data);
+    // console.log("data", response.data);
     setUsers(response.data);
     setLoading(false);
   };
 
   useEffect(() => {
     getUser(username);
-  }, []);
+  }, [username]);
 
   return (
     <UserContainer>
@@ -29,8 +32,10 @@ export default function UserPage({ name, avatar_url, followers, following }) {
         <>로딩중..</>
       ) : (
         <>
-          <CloseBtn>X</CloseBtn>
-          <UserImage src={users.avatar_url} alt={avatar_url} />
+          <CloseBtn>
+            <Link to="/search"> X </Link>
+          </CloseBtn>
+          <UserImage src={users.avatar_url} alt="프로필사진" />
           <UserName>{users.name}</UserName>
           <UserId>{users.login}</UserId>
           <UserInfoContainer>
@@ -100,7 +105,7 @@ const UserInfo = styled.div`
   gap: 10px;
   padding: 20px;
   width: 30%;
-  background-color: rgba(130, 130, 130, 0.3);
-  border: solid 1px darkgray;
+  background-color: rgba(152, 215, 255, 0.3);
+  border: solid 1px #75c9f8;
   border-radius: 10px;
 `;
