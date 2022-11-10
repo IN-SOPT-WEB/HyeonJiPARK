@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function SearchPage() {
@@ -24,39 +24,37 @@ export default function SearchPage() {
   };
 
   return (
-    <SearchContainer>
-      <Title>깃헙 프로필 검색창</Title>
-      <SearchBar onSubmit={handleSubmit}>
-        <SearchInput
-          type="text"
-          name="text"
-          placeholder="깃헙 아이디를 입력해주세요"
-          value={username}
-          onChange={handleChange}
-        />
-        <SearchButton type="submit" value="검색" />
-      </SearchBar>
-    </SearchContainer>
+    <>
+      <SearchContainer>
+        <Title>깃헙 프로필 검색창</Title>
+        <SearchBar onSubmit={handleSubmit}>
+          <SearchInput
+            type="text"
+            name="text"
+            placeholder="깃헙 아이디를 입력해주세요"
+            value={username}
+            onChange={handleChange}
+          />
+          <SearchButton type="submit" value="검색" />
+        </SearchBar>
+      </SearchContainer>
+      <Outlet />
+    </>
   );
 }
 
 const SearchContainer = styled.header`
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
 
+  margin-top: 10%;
   padding: 20px;
-  width: 50%;
+  width: 500px;
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.9);
-  opacity: 0.7;
 `;
 
 const Title = styled.h1`

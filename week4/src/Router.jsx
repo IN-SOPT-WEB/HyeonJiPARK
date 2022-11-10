@@ -7,8 +7,9 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/search/:username" element={<UserPage />} />
+        <Route path="/search" element={<SearchPage />}>
+          <Route path=":username" element={<UserPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
