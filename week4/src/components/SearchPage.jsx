@@ -4,26 +4,26 @@ import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function SearchPage() {
+  const [username, setUsername] = useState(""); // input 값
+  const [focus, setFocus] = useState(false); // input 포커싱 상태
   let [history, setHistory] = useState([]); // 검색 히스토리를 저장할 배열
   const historyStorage = localStorage.getItem("history"); // 히스토리 로컬스토리지 저장소
+  const navigate = useNavigate(); // 검색결과 페이지 이동을 위한 navigate
 
   // 히스토리 로컬스토리지 저장
   const setLocalStorage = () => {
     localStorage.setItem("history", JSON.stringify(history));
   };
 
-  const [focus, setFocus] = useState(false);
-  const [username, setUsername] = useState("");
-  const navigate = useNavigate();
-
   // 검색 시 해당 유저 프로필 페이지로 이동
   const searchUsers = (username) => {
     navigate(`/search/${username}`);
   };
 
+  // input창 텍스트 보여주기
   const handleChange = (e) => setUsername(e.target.value);
 
-  // 검색 클릭했을 때
+  // 검색 클릭 시 history 배열에 넣고 로컬스토리지에 저장
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username === "") {
@@ -66,7 +66,7 @@ export default function SearchPage() {
     // setFocus(false);
   };
 
-  // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동
+  // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동, 드롭다운 사라짐
   const onClickHistory = (_history) => {
     navigate(`/search/${_history}`);
     setFocus(false);

@@ -20,7 +20,6 @@ export default function UserPage() {
     );
     setUsers(response.data);
     setLoading(false);
-    console.log(response.data);
   };
 
   useEffect(() => {
