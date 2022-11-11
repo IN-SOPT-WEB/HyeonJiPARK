@@ -5,9 +5,10 @@ import styled from "styled-components";
 
 export default function UserPage() {
   const { username } = useParams();
-
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
+
+  // 검색 input값 받아와서 해당 유저 정보 불러오기
   const getUser = async (username) => {
     const response = await axios.get(
       `https://api.github.com/users/${username}`,
@@ -17,9 +18,9 @@ export default function UserPage() {
         },
       }
     );
-    // console.log("data", response.data);
     setUsers(response.data);
     setLoading(false);
+    console.log(response.data);
   };
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export default function UserPage() {
   return (
     <UserContainer>
       {loading ? (
-        <>로딩중..</>
+        <LoadingImg src="./image/loading.gif" alt="로딩중" />
       ) : (
         <>
           <CloseBtn>
@@ -38,6 +39,15 @@ export default function UserPage() {
           <UserImage src={users.avatar_url} alt="프로필사진" />
           <UserName>{users.name}</UserName>
           <UserId>{users.login}</UserId>
+          <UserLink
+            type="button"
+            onClick={() => {
+              window.open(users.html_url);
+            }}
+          >
+            {console.log(users.html_url)}
+            깃허브 구경가기
+          </UserLink>
           <UserInfoContainer>
             <UserInfo>
               <h1>{users.public_repos}</h1>
@@ -71,6 +81,8 @@ const UserContainer = styled.article`
   background-color: rgba(255, 255, 255, 0.9);
 `;
 
+const LoadingImg = styled.div``;
+
 const CloseBtn = styled.button`
   font-size: 1.3rem;
   margin-left: auto;
@@ -88,6 +100,14 @@ const UserName = styled.h1`
 const UserId = styled.h2`
   font-size: 1.2rem;
   color: gray;
+`;
+
+const UserLink = styled.button`
+  padding: 10px 30px;
+  font-size: 1rem;
+  background-color: white;
+  border: solid 1px #66abfd;
+  border-radius: 20px;
 `;
 
 const UserInfoContainer = styled.div`

@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function SearchPage() {
-  let [history, setHistory] = useState([]); // 검색 히스토리를 저장할 객체
+  let [history, setHistory] = useState([]); // 검색 히스토리를 저장할 배열
   const historyStorage = localStorage.getItem("history"); // 히스토리 로컬스토리지 저장소
 
   // 히스토리 로컬스토리지 저장
@@ -12,18 +12,22 @@ export default function SearchPage() {
     localStorage.setItem("history", JSON.stringify(history));
   };
 
+  const [focus, setFocus] = useState(false);
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
+
+  // 검색 시 해당 유저 프로필 페이지로 이동
   const searchUsers = (username) => {
     navigate(`/search/${username}`);
   };
 
   const handleChange = (e) => setUsername(e.target.value);
 
+  // 검색 클릭했을 때
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username === "") {
-      console.log("아이디를 입력하세요");
+      alert("아이디를 입력하세요");
     } else {
       searchUsers(username);
       // history 배열에 넣기 (중복 아닐 때)
@@ -33,6 +37,7 @@ export default function SearchPage() {
       // 로컬스토리지 업데이트
       setLocalStorage();
       setUsername("");
+      setFocus(false);
     }
   };
 
@@ -43,19 +48,32 @@ export default function SearchPage() {
     }
   };
 
-  const setDropdown = () => {
-    const curHistory = JSON.parse(historyStorage);
-    curHistory.forEach((_curhistory) => {});
-  };
-
+  // 히스토리 삭제
   const onClickDelete = (_history) => {
     const num = history.indexOf(_history);
-
     setHistory(history.splice(num, 1));
     setLocalStorage();
   };
+
+  // input 포커스 될 때 드롭다운 나타남
+  const onFocusInput = () => {
+    setFocus(true);
+  };
+
+  // 포커스 아웃 시 드롭다운 없어짐 (미완성,,,)
+  const onFocusOut = (e) => {
+    // if ()
+    // setFocus(false);
+  };
+
+  // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동
+  const onClickHistory = (_history) => {
+    navigate(`/search/${_history}`);
+    setFocus(false);
+  };
+
   return (
-    <>
+    <Container onClick={onFocusOut}>
       <SearchContainer>
         {initHistory()}
         <Title>깃헙 프로필 검색창</Title>
@@ -66,24 +84,34 @@ export default function SearchPage() {
             placeholder="깃헙 아이디를 입력해주세요"
             value={username}
             onChange={handleChange}
+            onFocus={onFocusInput}
+            autocomplete="false"
           />
           <SearchButton type="submit" value="검색" />
         </SearchBar>
-        <SearchHistories>
-          {history.map((_history) => (
-            <SearchHistory>
-              {_history}
-              <DeleteButton onClick={() => onClickDelete(_history)}>
-                X
-              </DeleteButton>
-            </SearchHistory>
-          ))}
-        </SearchHistories>
+        {focus && (
+          <SearchHistories>
+            {history.map((_history) => (
+              <DropdownList>
+                <SearchHistory onClick={() => onClickHistory(_history)}>
+                  {_history}
+                </SearchHistory>
+                <DeleteButton onClick={() => onClickDelete(_history)}>
+                  X
+                </DeleteButton>
+              </DropdownList>
+            ))}
+          </SearchHistories>
+        )}
       </SearchContainer>
       <Outlet />
-    </>
+    </Container>
   );
 }
+
+// -------------------------- style --------------------------
+
+const Container = styled.div``;
 
 const SearchContainer = styled.header`
   display: flex;
@@ -116,6 +144,9 @@ const SearchInput = styled.input`
   padding: 10px;
   background-color: white;
   width: 70%;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const SearchButton = styled.input`
@@ -125,30 +156,40 @@ const SearchButton = styled.input`
 `;
 
 const SearchHistories = styled.div`
-  /* width: 100px;
-  height: 30px; */
-  width: 70%;
+  width: 450px;
+  left: 35%;
+  top: 18%;
+
   display: flex;
   flex-direction: column;
-
   justify-content: space-between;
   align-items: center;
-  position: relative;
-  z-index: 1;
+  position: absolute;
   gap: 10px;
-
   padding: 5px 10px;
+`;
 
-  background-color: blue;
+const DropdownList = styled.div`
+  width: 70%;
+  display: flex;
+  > *:hover {
+    color: white;
+  }
 `;
 
 const SearchHistory = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: 100%;
+  width: 85%;
   padding: 10px;
-  background-color: rgba(255, 0, 255, 0.8);
+  margin: -5px;
+  background-color: rgba(181, 203, 255, 0.675);
 `;
 
-const DeleteButton = styled.button``;
+const DeleteButton = styled.button`
+  background-color: rgba(181, 203, 255, 0.675);
+  padding: 10px;
+  margin: -5px;
+  margin-left: 5px;
+`;
