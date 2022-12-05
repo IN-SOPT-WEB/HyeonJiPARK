@@ -1,4 +1,6 @@
+import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -9,6 +11,11 @@ export default function SearchPage() {
   let [history, setHistory] = useState([]); // 검색 히스토리를 저장할 배열
   const historyStorage = localStorage.getItem("history"); // 히스토리 로컬스토리지 저장소
   const navigate = useNavigate(); // 검색결과 페이지 이동을 위한 navigate
+
+  const getMokingUsers = async () => {
+    const response = await axios.get("/users");
+    console.log("response", response);
+  };
 
   // 히스토리 로컬스토리지 저장
   const setLocalStorage = () => {
@@ -71,6 +78,10 @@ export default function SearchPage() {
     navigate(`/search/${_history}`);
     setFocus(false);
   };
+
+  useEffect(() => {
+    getMokingUsers();
+  }, []);
 
   return (
     <Container onClick={onFocusOut}>
