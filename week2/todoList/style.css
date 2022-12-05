@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.header {
+    position: relative;
+}
+
+.header__logo {
+    width: 150px;
+
+    margin: 20px;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.header__nav {
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.header__nav-button {
+    border: 0;
+
+    padding: 10px;
+    
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: #B6BEC9;
+    background-color: white;
+}
+
+.header__nav-button:hover
+{
+    color: black;
+    text-decoration : underline;
+}
+
+.clicked
+{
+    color: black;
+    text-decoration : underline;
+}
+
+/* ---------------------------------- */
+
+.box {
+    height: 500px;
+    margin: 20px;
+    padding: 15px;
+
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    position: relative;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.15);
+}
+
+.box .todolist__footer {
+    width: 90%;
+    height: 50px;
+
+    position: absolute;
+    bottom: 10px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ---------------------------------- */
+
+.todolist {
+    display: flex;
+}
+
+.hidden {
+    /* display: none; DOM에서 요소를 완전히 제거하는 것. 스크린리더가 볼 수 없음 / visibility: hidden은?*/
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    box-shadow: none;
+}
+
+.todolist__title {
+    font-weight: 900;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #bac2cc;
+}
+
+.todolist__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 5px;
+    margin: 5px;
+}
+
+.todolist__item:not(:last-child) {
+    border-bottom: 1px solid #efefef;
+}
+
+
+/* ---------------------------------- */
+
+.todolist__input {
+    height: 30px;
+
+    display: block;
+    flex-grow: 1;
+
+    border: 1px solid #efefef;
+}
+
+.todolist__add-button {
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+    
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: #B6BEC9;
+    background-color: white;
+
+}
+
+.todolist__delete-button {
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+    
+    font-size: 1rem;
+    font-weight: 600;
+
+    color: #B6BEC9;
+    background-color: white;
+    
+}

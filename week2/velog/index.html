@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://velog.io/&size=16">
+    <title>hyeonlog</title>
+</head>
+<body class="body">
+    <header class="header">
+        <a class="header__logo" onClick="window.location.reload()">hyeonlog</a>
+        <nav class="header__setting">
+            <button class="material-icons header__lightmode">light_mode</button>
+            <button class="material-icons header__search">search</button>
+            <a href="./write.html"> 
+                <button class="header__write">새 글 작성</button>
+            </a>
+            <button class="header__profile">
+                <img src="./img/profile.jpeg" class="header__image" alt="프로필 이미지" />
+                <span class="material-icons header__dropdown">arrow_drop_down</span>
+            </button>
+        </nav>
+    </header>
+    
+    <nav class="nav">
+        <div class="nav__wrapper">
+            <ul class="nav__list">
+                <li class="nav__trending">
+                    <span class="material-icons">trending_up</span>
+                    <span>트렌딩</span>
+                </li>
+                <li class="nav__recent">
+                    <span class="material-icons">schedule</span>
+                    <span>최신</span>
+                </li>
+            </ul>
+            <div class="nav__dropdown">
+                <button class="dropdown__toggle">이번 주</button>
+                <span class="material-icons">arrow_drop_down</span>
+                <ul class="dropdown__content">
+                    <li class="dropdown__option">오늘</li>
+                    <li class="dropdown__option selected">이번 주</li>
+                    <li class="dropdown__option">이번 달</li>
+                    <li class="dropdown__option">올해</li>
+                </ul>
+            </div>
+        </div>
+        <span class="material-icons nav__more">more_vert</span>
+    </nav>
+    
+    <!-- slider -->
+    <section class="section-silder">
+        <div class="slider__prev-button sliderBtn">◀</div>
+        <div class="slider__next-button sliderBtn">▶</div>
+        <div class="card-wrapper">
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">내용재뇽내욘</p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">
+                    내용재뇽내욘<br>
+                    내용재뇽내욘
+                </p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">
+                    내용재뇽내욘<br>
+                    내용재뇽내욘<br>
+                    내용재뇽내욘
+                </p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">내용재뇽내욘</p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">내용재뇽내욘</p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">내용재뇽내욘</p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">내용재뇽내욘</p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">내용재뇽내욘</p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">내용재뇽내욘</p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">내용재뇽내욘</p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+            <article class="card">
+                <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+                <h1 class="card__title">제목제목제목</h1>
+                <p class="card__description">내용재뇽내욘</p>
+                <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+                <footer class="card__footer">
+                    <div class="card__user">
+                        <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                        <span>by</span>
+                        <strong class="user__name">박현지</strong>
+                    </div>
+                    <div class="card__like">
+                        <span class="material-icons">favorite</span>
+                        <span class="like__num">88</span>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </section>
+
+    <section class="section-card">
+        <article class="card">
+            <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+            <h1 class="card__title">제목제목제목</h1>
+            <p class="card__description">내용재뇽내욘</p>
+            <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+            <footer class="card__footer">
+                <div class="card__user">
+                    <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                    <span>by</span>
+                    <strong class="user__name">박현지</strong>
+                </div>
+                <div class="card__like">
+                    <span class="material-icons">favorite</span>
+                    <span class="like__num">88</span>
+                </div>
+            </footer>
+        </article>
+        <article class="card">
+            <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+            <h1 class="card__title">제목제목제목</h1>
+            <p class="card__description">
+                내용재뇽내욘<br>
+                내용재뇽내욘
+            </p>
+            <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+            <footer class="card__footer">
+                <div class="card__user">
+                    <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                    <span>by</span>
+                    <strong class="user__name">박현지</strong>
+                </div>
+                <div class="card__like">
+                    <span class="material-icons">favorite</span>
+                    <span class="like__num">88</span>
+                </div>
+            </footer>
+        </article>
+        <article class="card">
+            <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+            <h1 class="card__title">제목제목제목</h1>
+            <p class="card__description">
+                내용재뇽내욘<br>
+                내용재뇽내욘<br>
+                내용재뇽내욘
+            </p>
+            <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+            <footer class="card__footer">
+                <div class="card__user">
+                    <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                    <span>by</span>
+                    <strong class="user__name">박현지</strong>
+                </div>
+                <div class="card__like">
+                    <span class="material-icons">favorite</span>
+                    <span class="like__num">88</span>
+                </div>
+            </footer>
+        </article>
+        <article class="card">
+            <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+            <h1 class="card__title">제목제목제목</h1>
+            <p class="card__description">내용재뇽내욘</p>
+            <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+            <footer class="card__footer">
+                <div class="card__user">
+                    <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                    <span>by</span>
+                    <strong class="user__name">박현지</strong>
+                </div>
+                <div class="card__like">
+                    <span class="material-icons">favorite</span>
+                    <span class="like__num">88</span>
+                </div>
+            </footer>
+        </article>
+        <article class="card">
+            <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+            <h1 class="card__title">제목제목제목</h1>
+            <p class="card__description">내용재뇽내욘</p>
+            <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+            <footer class="card__footer">
+                <div class="card__user">
+                    <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                    <span>by</span>
+                    <strong class="user__name">박현지</strong>
+                </div>
+                <div class="card__like">
+                    <span class="material-icons">favorite</span>
+                    <span class="like__num">88</span>
+                </div>
+            </footer>
+        </article>
+        <article class="card">
+            <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+            <h1 class="card__title">제목제목제목</h1>
+            <p class="card__description">내용재뇽내욘</p>
+            <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+            <footer class="card__footer">
+                <div class="card__user">
+                    <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                    <span>by</span>
+                    <strong class="user__name">박현지</strong>
+                </div>
+                <div class="card__like">
+                    <span class="material-icons">favorite</span>
+                    <span class="like__num">88</span>
+                </div>
+            </footer>
+        </article>
+        <article class="card">
+            <h1 class="card__title">제목제목제목사진없음</h1>
+            <p class="card__description">내용재뇽내욘</p>
+            <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+            <footer class="card__footer">
+                <div class="card__user">
+                    <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                    <span>by</span>
+                    <strong class="user__name">박현지</strong>
+                </div>
+                <div class="card__like">
+                    <span class="material-icons">favorite</span>
+                    <span class="like__num">88</span>
+                </div>
+            </footer>
+        </article>
+        <article class="card">
+            <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+            <h1 class="card__title">제목제목제목</h1>
+            <p class="card__description">내용재뇽내욘</p>
+            <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+            <footer class="card__footer">
+                <div class="card__user">
+                    <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                    <span>by</span>
+                    <strong class="user__name">박현지</strong>
+                </div>
+                <div class="card__like">
+                    <span class="material-icons">favorite</span>
+                    <span class="like__num">88</span>
+                </div>
+            </footer>
+        </article>
+        <article class="card">
+            <img class="card__thumbnail" src="./img/thumb.png" alt="하늘">
+            <h1 class="card__title">제목제목제목</h1>
+            <p class="card__description">내용재뇽내욘</p>
+            <p class="card__info">2022년 9월 29일 · 10개의 댓글</p>
+            <footer class="card__footer">
+                <div class="card__user">
+                    <img src="./img/profile.jpeg" class="user__image" alt="유저 이미지" />
+                    <span>by</span>
+                    <strong class="user__name">박현지</strong>
+                </div>
+                <div class="card__like">
+                    <span class="material-icons">favorite</span>
+                    <span class="like__num">88</span>
+                </div>
+            </footer>
+        </article>
+    </section>
+    <script src="./main.js"></script>
+</body>
+</html>

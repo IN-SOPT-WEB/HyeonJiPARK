@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>TODOLIST</title>
+</head>
+<body>
+    <header class="header">
+        <a onClick="window.location.reload()" style="cursor: pointer;">
+            <img src="./logo.png" class="header__logo" alt="로고">
+        </a>
+        <nav class="header__nav">
+            <button class="header__nav-button today" type="button">TODAY PLAN</button>
+            <button class="header__nav-button tomorrow" type="button">TOMORROW PLAN</button>
+            <button class="header__nav-button all" type="button">ALL</button>
+        </nav>
+    </header>
+    <main class="todolist">
+        <section class="todolist__today box">
+            <h1 class="todolist__title">TODAY</h1>
+            <ul class="todolist__lists todayLists">
+            </ul> 
+            <footer class="todolist__footer">
+                <input class="todolist__input todayInput" type="text"/>
+                <button class="todolist__add-button todayAddBtn" type="button">+</button>
+            </footer>
+        </section>
+        <section class="todolist__tomorrow box">
+            <h1 class="todolist__title">TOMORROW</h1>
+            <ul class="todolist__lists tomorrowLists">                
+                <li class="todolist__item">
+                    투두리스트 과제하기
+                    <button class="todolist__delete-button" type="button">-</button>
+                </li>
+                <li class="todolist__item">
+                    벨로그 클론코딩 과제하기
+                    <button class="todolist__delete-button" type="button">-</button>
+                </li>
+            </ul>
+            <footer class="todolist__footer">
+                <input class="todolist__input tomorrowInput" type="text"/>
+                <button class="todolist__add-button tomorrowAddBtn" type="button">+</button>
+            </footer>
+        </section>
+    </main>
+    <script src="./main.js"></script>
+</body>
+</html>
