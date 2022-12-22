@@ -3,10 +3,14 @@ import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function SearchPage() {
-  const [username, setUsername] = useState(""); // input 값
+interface Props {
+  getUser: (username: string) => void;
+}
+
+export default function SearchPage({getUser}: Props) {
+  const [input, setInput] = useState(""); // input 값
   const [focus, setFocus] = useState(false); // input 포커싱 상태
-  let [history, setHistory] = useState([]); // 검색 히스토리를 저장할 배열
+  let [history, setHistory] = useState<string[]>([]); // 검색 히스토리를 저장할 배열
   const historyStorage = localStorage.getItem("history"); // 히스토리 로컬스토리지 저장소
   const navigate = useNavigate(); // 검색결과 페이지 이동을 위한 navigate
 
@@ -15,66 +19,67 @@ export default function SearchPage() {
     localStorage.setItem("history", JSON.stringify(history));
   };
 
-  // 검색 시 해당 유저 프로필 페이지로 이동
-  const searchUsers = (username) => {
-    navigate(`/search/${username}`);
+  //검색 시 해당 유저 프로필 페이지로 이동
+  const searchUsers = (input: string) => {
+    navigate(`/search/${input}`);
   };
 
   // input창 텍스트 보여주기
-  const handleChange = (e) => setUsername(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
 
   // 검색 클릭 시 history 배열에 넣고 로컬스토리지에 저장
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (username === "") {
+    if (input === "") {
       alert("아이디를 입력하세요");
     } else {
-      searchUsers(username);
+      getUser(input);
+      searchUsers(input);
       // history 배열에 넣기 (중복 아닐 때)
-      if (!history.includes(username)) {
-        history.push(username);
+      if (!history.includes(input)) {
+        history.push(input);
       }
       // 로컬스토리지 업데이트
       setLocalStorage();
-      setUsername("");
+      setInput("");
       setFocus(false);
     }
   };
 
   // 히스토리가 새로고침해도 남아있게 하기 위해서 init
-  const initHistory = () => {
+  const initHistory = (): void => {
     if (historyStorage != null) {
       history = JSON.parse(historyStorage);
     }
   };
 
   // 히스토리 삭제
-  const onClickDelete = (_history) => {
+  const onClickDelete = (_history: string) => {
     const num = history.indexOf(_history);
     setHistory(history.splice(num, 1));
     setLocalStorage();
   };
 
   // input 포커스 될 때 드롭다운 나타남
-  const onFocusInput = () => {
+  const onFocusInput = (e: React.FocusEvent<HTMLInputElement>) => {
     setFocus(true);
   };
 
   // 포커스 아웃 시 드롭다운 없어짐 (미완성,,,)
-  const onFocusOut = (e) => {
+  const onFocusOut = (e: React.MouseEvent<HTMLDivElement>) => {
     // if ()
     // setFocus(false);
   };
 
   // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동, 드롭다운 사라짐
-  const onClickHistory = (_history) => {
+  const onClickHistory = (_history: string) => {
     navigate(`/search/${_history}`);
-    setFocus(false);
   };
 
   return (
     <Container onClick={onFocusOut}>
       <SearchContainer>
+        <>
         {initHistory()}
         <Title>깃헙 프로필 검색창</Title>
         <SearchBar onSubmit={handleSubmit}>
@@ -82,17 +87,17 @@ export default function SearchPage() {
             type="text"
             name="text"
             placeholder="깃헙 아이디를 입력해주세요"
-            value={username}
+            value={input}
             onChange={handleChange}
             onFocus={onFocusInput}
-            autocomplete="false"
+            // autocomplete="false"
           />
           <SearchButton type="submit" value="검색" />
         </SearchBar>
         {focus && (
           <SearchHistories>
             {history.map((_history) => (
-              <DropdownList>
+              <DropdownList key={_history}>
                 <SearchHistory onClick={() => onClickHistory(_history)}>
                   {_history}
                 </SearchHistory>
@@ -103,6 +108,7 @@ export default function SearchPage() {
             ))}
           </SearchHistories>
         )}
+        </>
       </SearchContainer>
       <Outlet />
     </Container>

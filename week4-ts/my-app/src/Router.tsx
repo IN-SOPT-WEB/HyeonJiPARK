@@ -1,14 +1,13 @@
-import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SearchPage from "./components/SearchPage";
-import UserPage from "./components/UserPage";
+import SearchInput from "./components/SearchInput";
+import SearchResult from "./components/SearchResult/index";
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/search" element={<SearchPage />}>
-          <Route path=":username" element={<UserPage />} />
+        <Route path="/search" element={<SearchInput />}>
+          <Route path=":username" element={<SearchResult />} />
         </Route>
       </Routes>
     </BrowserRouter>
