@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
 interface Props {
@@ -12,16 +12,10 @@ export default function SearchPage({getUser}: Props) {
   const [focus, setFocus] = useState(false); // input 포커싱 상태
   let [history, setHistory] = useState<string[]>([]); // 검색 히스토리를 저장할 배열
   const historyStorage = localStorage.getItem("history"); // 히스토리 로컬스토리지 저장소
-  const navigate = useNavigate(); // 검색결과 페이지 이동을 위한 navigate
 
   // 히스토리 로컬스토리지 저장
   const setLocalStorage = () => {
     localStorage.setItem("history", JSON.stringify(history));
-  };
-
-  //검색 시 해당 유저 프로필 페이지로 이동
-  const searchUsers = (input: string) => {
-    navigate(`/search/${input}`);
   };
 
   // input창 텍스트 보여주기
@@ -34,7 +28,7 @@ export default function SearchPage({getUser}: Props) {
       alert("아이디를 입력하세요");
     } else {
       getUser(input);
-      searchUsers(input);
+      // searchUsers(input);
       // history 배열에 넣기 (중복 아닐 때)
       if (!history.includes(input)) {
         history.push(input);
@@ -73,7 +67,7 @@ export default function SearchPage({getUser}: Props) {
 
   // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동, 드롭다운 사라짐
   const onClickHistory = (_history: string) => {
-    navigate(`/search/${_history}`);
+    getUser(_history);
   };
 
   return (
