@@ -18,9 +18,9 @@ export default function SearchInput() {
   const usernameRef = useRef("");
   const navigate = useNavigate();
   
-    useEffect (() => {
-      navigate(`/search/${usernameRef.current}`, {state: userState})
-    }, [userState]);
+  useEffect (() => {
+    navigate(`/search/${usernameRef.current}`, {state: userState})
+  }, [userState]);
 
   // 검색 input값 받아와서 해당 유저 정보 불러오기
   const getUser = async (username: string) => {

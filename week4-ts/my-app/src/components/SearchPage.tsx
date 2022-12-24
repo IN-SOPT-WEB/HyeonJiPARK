@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
@@ -12,6 +12,11 @@ export default function SearchPage({getUser}: Props) {
   const [focus, setFocus] = useState(false); // input 포커싱 상태
   let [history, setHistory] = useState<string[]>([]); // 검색 히스토리를 저장할 배열
   const historyStorage = localStorage.getItem("history"); // 히스토리 로컬스토리지 저장소
+
+  useEffect (() => {
+    initHistory();
+    console.log(history);
+  }, []);
 
   // 히스토리 로컬스토리지 저장
   const setLocalStorage = () => {
@@ -28,7 +33,6 @@ export default function SearchPage({getUser}: Props) {
       alert("아이디를 입력하세요");
     } else {
       getUser(input);
-      // searchUsers(input);
       // history 배열에 넣기 (중복 아닐 때)
       if (!history.includes(input)) {
         history.push(input);
@@ -73,8 +77,7 @@ export default function SearchPage({getUser}: Props) {
   return (
     <Container onClick={onFocusOut}>
       <SearchContainer>
-        <>
-        {initHistory()}
+        {/* {initHistory()} */}
         <Title>깃헙 프로필 검색창</Title>
         <SearchBar onSubmit={handleSubmit}>
           <SearchInput
@@ -84,7 +87,7 @@ export default function SearchPage({getUser}: Props) {
             value={input}
             onChange={handleChange}
             onFocus={onFocusInput}
-            // autocomplete="false"
+            autoComplete="off"
           />
           <SearchButton type="submit" value="검색" />
         </SearchBar>
@@ -102,7 +105,6 @@ export default function SearchPage({getUser}: Props) {
             ))}
           </SearchHistories>
         )}
-        </>
       </SearchContainer>
       <Outlet />
     </Container>
@@ -118,11 +120,13 @@ const SearchContainer = styled.header`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   gap: 20px;
 
+  width: 500px;
   margin-top: 10%;
   padding: 20px;
-  width: 500px;
+
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.9);
 `;
@@ -135,6 +139,7 @@ const SearchBar = styled.form`
   display: flex;
   justify-content: center;
   gap: 10px;
+
   width: 90%;
 `;
 
@@ -156,22 +161,24 @@ const SearchButton = styled.input`
 `;
 
 const SearchHistories = styled.div`
-  width: 450px;
-  left: 35%;
-  top: 18%;
-
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   position: absolute;
+  left: 2.5%;
+  top: 87%;
   gap: 10px;
+  
+  width: 450px;
   padding: 5px 10px;
 `;
 
 const DropdownList = styled.div`
-  width: 70%;
   display: flex;
+
+  width: 70%;
+
   > *:hover {
     color: white;
   }
@@ -179,17 +186,20 @@ const DropdownList = styled.div`
 
 const SearchHistory = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  flex-wrap: wrap;
+
   width: 85%;
   padding: 10px;
   margin: -5px;
+  
   background-color: rgba(181, 203, 255, 0.675);
 `;
 
 const DeleteButton = styled.button`
-  background-color: rgba(181, 203, 255, 0.675);
   padding: 10px;
   margin: -5px;
   margin-left: 5px;
+
+  background-color: rgba(181, 203, 255, 0.675);
 `;
