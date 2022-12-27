@@ -9,7 +9,7 @@ export interface UserStateInterface {
   user: User | null;
 }
 
-export default function SearchInput() {
+function SearchInput() {
   const [userState, setUserState] = useState<UserStateInterface>({
     status: "waiting",
     user: null,
@@ -39,3 +39,5 @@ export default function SearchInput() {
     <SearchPage getUser={getUser} />
   )
 };
+
+export default SearchInput

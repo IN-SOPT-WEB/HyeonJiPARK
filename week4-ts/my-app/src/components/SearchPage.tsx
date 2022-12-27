@@ -7,7 +7,7 @@ interface Props {
   getUser: (username: string) => void;
 }
 
-export default function SearchPage({getUser}: Props) {
+function SearchPage({getUser}: Props) {
   const [input, setInput] = useState(""); // input 값
   const [histories, setHistories] = useState<string[]>(JSON.parse(localStorage.getItem("history") || '[]')); // 검색 히스토리 저장
 
@@ -35,7 +35,7 @@ export default function SearchPage({getUser}: Props) {
     if (input === "") {
       alert("아이디를 입력하세요");
     } else {
-      const userData = getUser(input);
+      getUser(input);
       if (!histories.includes(input)) {
         // history 배열에 넣기 (중복 아닐 때)
         setHistories([...histories, input]);
@@ -95,6 +95,8 @@ export default function SearchPage({getUser}: Props) {
     </>
   );
 }
+
+export default SearchPage
 
 // -------------------------- style --------------------------
 
