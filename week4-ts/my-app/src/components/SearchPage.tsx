@@ -11,9 +11,10 @@ export default function SearchPage({getUser}: Props) {
   const [input, setInput] = useState(""); // input 값
   const [focus, setFocus] = useState(false); // input 포커싱 상태
   let [histories, setHistories] = useState<string[]>([]); // 검색 히스토리를 저장할 배열
-  const historyStorage = localStorage.getItem("histories"); // 히스토리 로컬스토리지 저장소
+  const historyStorage = localStorage.getItem("history"); // 히스토리 로컬스토리지 저장소
 
   useEffect (() => {
+    console.log(historyStorage);
     initHistory();
     console.log(histories);
   },[]);
@@ -54,9 +55,9 @@ export default function SearchPage({getUser}: Props) {
 
   // 히스토리 삭제
   const onRemove = (target: string) => {
-    setHistories(histories.filter((history) => history !== target));
-    localStorage.setItem("history", JSON.stringify([...histories]));
-    // localStorage.removeItem(target);
+    const newHistories = histories.filter((history) => history !== target);
+    setHistories(newHistories);
+    localStorage.setItem("history", JSON.stringify([...newHistories]));
   };
 
   // input 포커스 될 때 드롭다운 나타남
