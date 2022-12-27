@@ -15,7 +15,15 @@ export default function SearchPage({getUser}: Props) {
 
   useEffect (() => {
     initHistory();
+    console.log(histories);
   },[]);
+
+  // 히스토리가 새로고침해도 남아있게 하기 위해서 init
+  const initHistory = (): void => {
+    if (historyStorage != null) {
+      setHistories(JSON.parse(historyStorage));
+    }
+  };
 
   // input창 텍스트 보여주기
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
@@ -43,12 +51,6 @@ export default function SearchPage({getUser}: Props) {
     }
   };
 
-  // 히스토리가 새로고침해도 남아있게 하기 위해서 init
-  const initHistory = (): void => {
-    if (historyStorage != null) {
-      setHistories(JSON.parse(historyStorage));
-    }
-  };
 
   // 히스토리 삭제
   const onRemove = (target: string) => {
