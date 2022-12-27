@@ -28,7 +28,6 @@ export default function SearchInput() {
     setUserState({ ...userState, status: "loading" });
     try {
       const data = await getUserAPI(username);
-      console.log("result: " , data);
       setUserState({ status: "success", user: data });
       navigate(`/search/${username}`, {state: userState });
     } catch (error) {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
@@ -7,15 +7,44 @@ interface Props {
   getUser: (username: string) => void;
 }
 
+interface History {
+  id: number,
+  github_id: string,
+}
+
 export default function SearchPage({getUser}: Props) {
   const [input, setInput] = useState(""); // input 값
   const [focus, setFocus] = useState(false); // input 포커싱 상태
-  let [histories, setHistories] = useState<string[]>([]); // 검색 히스토리를 저장할 배열
+  let [histories, setHistories] = useState<History[]>([]); // 검색 히스토리를 저장할 배열
   const historyStorage = localStorage.getItem("histories"); // 히스토리 로컬스토리지 저장소
+  const nextId = useRef(0);
 
   useEffect (() => {
-    initHistory();
+    // initHistory();
   },[]);
+
+  // 히스토리 로컬스토리지 저장
+  const setLocalStorage = (newHistory: string[]) => {
+    localStorage.setItem("history", JSON.stringify([...histories], newHistory));
+  };
+
+  const addLocalStorage = (newHistory: string) => {
+    const user = {
+      id: nextId.current,
+      github_id: newHistory,
+    };
+    localStorage.setItem("history", JSON.stringify([...histories, user]));
+  }
+
+  const addHistory = (newHistory: string) => {
+    console.log(nextId);
+    const user: History = {
+      id: nextId.current,
+      github_id: newHistory,
+    };
+    setHistories([...histories, user]);
+    nextId.current += 1;
+  }
 
   // input창 텍스트 보여주기
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
@@ -27,16 +56,12 @@ export default function SearchPage({getUser}: Props) {
       alert("아이디를 입력하세요");
     } else {
       getUser(input);
-      // if (histories.filter((history) => history !== input)) {
-      if (!histories.includes(input)) {
-        // history 배열에 넣기 (중복 아닐 때)
-        // setHistories([...histories, input]);
-        setHistories((currentHistories) => {
-          return [...currentHistories, input];
-        });
+      // history 배열에 넣기 (중복 아닐 때)
+      if (histories.filter((history) => history.github_id !== input)) {
+        addHistory(input);
 
         // 로컬스토리지 업데이트
-        localStorage.setItem("history", JSON.stringify([...histories, input]));
+        addLocalStorage(input);
       }
       setInput("");
       setFocus(false);
@@ -46,15 +71,17 @@ export default function SearchPage({getUser}: Props) {
   // 히스토리가 새로고침해도 남아있게 하기 위해서 init
   const initHistory = (): void => {
     if (historyStorage != null) {
-      setHistories(JSON.parse(historyStorage));
+      // 객체 형태로 저장
+      addHistory(JSON.stringify(historyStorage));
+      // setHistories(JSON.parse(historyStorage));
     }
   };
 
   // 히스토리 삭제
-  const onRemove = (target: string) => {
-    setHistories(histories.filter((history) => history !== target));
-    localStorage.setItem("history", JSON.stringify([...histories]));
-    // localStorage.removeItem(target);
+  const onRemove = (targetId: number) => {
+    const newHistories = histories.filter((history) => history.id !== targetId);
+    setHistories(newHistories);
+    // setLocalStorage(newHistories);
   };
 
   // input 포커스 될 때 드롭다운 나타남
@@ -69,8 +96,8 @@ export default function SearchPage({getUser}: Props) {
   };
 
   // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동, 드롭다운 사라짐
-  const onClickHistory = (history: string) => {
-    getUser(history);
+  const onClickHistory = (github_id: string) => {
+    getUser(github_id);
   };
 
   return (
@@ -92,11 +119,11 @@ export default function SearchPage({getUser}: Props) {
         {focus && (
           <SearchHistories>
             {histories.map((history) => (
-              <DropdownList key={history}>
-                <SearchHistory onClick={() => onClickHistory(history)}>
-                  {history}
+              <DropdownList key={history.id}>
+                <SearchHistory onClick={() => onClickHistory(history.github_id)}>
+                  {history.github_id}
                 </SearchHistory>
-                <DeleteButton onClick={() => onRemove(history)}>
+                <DeleteButton onClick={() => onRemove(history.id)}>
                   X
                 </DeleteButton>
               </DropdownList>

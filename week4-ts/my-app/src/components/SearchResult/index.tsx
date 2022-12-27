@@ -11,7 +11,6 @@ interface UserStateLocation {
 
 function SearchResult() {
   const { state } = useLocation() as UserStateLocation;
-  console.log(state);
 
   if (state.status === "loading") return <Loading />;
   if (state.status === "fail") return <NoResult />;
