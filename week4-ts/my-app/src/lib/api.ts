@@ -5,7 +5,6 @@ const client = axios.create({
   baseURL: "https://api.github.com/users/",
   headers: {
     'Content-type': 'application/json',
-    Authorization: `Bearer ${process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN}`,
   },
 });
 

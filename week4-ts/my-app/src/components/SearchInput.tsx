@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { getUserAPI } from "../lib/api";
 import { User } from "../types";
 import SearchPage from "./SearchPage";
-import Loading from "./SearchResult/Loading";
 
 export interface UserStateInterface {
   status: "waiting" | "loading" | "success" | "fail";

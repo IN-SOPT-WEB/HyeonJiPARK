@@ -16,20 +16,15 @@ export default function SearchPage({getUser}: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
 
   // 검색 클릭 시 history 배열에 넣고 로컬스토리지에 저장
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (input === "") {
       alert("아이디를 입력하세요");
     } else {
-      getUser(input);
-      if (histories.filter((history) => history !== input)) {
-      // if (!histories.includes(input)) {
+      const userData = getUser(input);
+      if (!histories.includes(input)) {
         // history 배열에 넣기 (중복 아닐 때)
-        // setHistories([...histories, input]);
-        setHistories((currentHistories) => {
-          return [...currentHistories, input];
-        });
-
+        setHistories([...histories, input]);
         // 로컬스토리지 업데이트
         localStorage.setItem("history", JSON.stringify([...histories, input]));
       }
