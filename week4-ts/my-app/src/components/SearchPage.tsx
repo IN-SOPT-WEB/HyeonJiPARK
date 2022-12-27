@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,21 +10,7 @@ interface Props {
 export default function SearchPage({getUser}: Props) {
   const [input, setInput] = useState(""); // input 값
   const [focus, setFocus] = useState(false); // input 포커싱 상태
-  let [histories, setHistories] = useState<string[]>([]); // 검색 히스토리를 저장할 배열
-  const historyStorage = localStorage.getItem("history"); // 히스토리 로컬스토리지 저장소
-
-  useEffect (() => {
-    console.log(historyStorage);
-    initHistory();
-    console.log(histories);
-  },[]);
-
-  // 히스토리가 새로고침해도 남아있게 하기 위해서 init
-  const initHistory = (): void => {
-    if (historyStorage != null) {
-      setHistories(JSON.parse(historyStorage));
-    }
-  };
+  const [histories, setHistories] = useState<string[]>(JSON.parse(localStorage.getItem("history") || '[]')); // 검색 히스토리 저장
 
   // input창 텍스트 보여주기
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
@@ -36,8 +22,8 @@ export default function SearchPage({getUser}: Props) {
       alert("아이디를 입력하세요");
     } else {
       getUser(input);
-      // if (histories.filter((history) => history !== input)) {
-      if (!histories.includes(input)) {
+      if (histories.filter((history) => history !== input)) {
+      // if (!histories.includes(input)) {
         // history 배열에 넣기 (중복 아닐 때)
         // setHistories([...histories, input]);
         setHistories((currentHistories) => {
