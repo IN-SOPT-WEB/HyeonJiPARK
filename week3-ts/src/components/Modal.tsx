@@ -2,7 +2,13 @@ import React from "react";
 import ReactDom from "react-dom";
 import styled from "styled-components";
 
-export default function Modal({ open, children, onClose }) {
+interface Props {
+    open: boolean;
+    children: string;
+    onClose: () => void;
+  }
+
+export default function Modal({ open, children, onClose }: Props) {
     if (!open) return null;
 
     return ReactDom.createPortal(
@@ -13,7 +19,7 @@ export default function Modal({ open, children, onClose }) {
                 <CloseBtn onClick={onClose}>X</CloseBtn>
             </ModalContainer>
         </>,
-        document.getElementById("portal")
+        document.getElementById("portal") as HTMLElement
     );
 }
 

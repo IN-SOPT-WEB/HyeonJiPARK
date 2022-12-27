@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
-import confetti from "https://cdn.skypack.dev/canvas-confetti@1";
+import confetti from "canvas-confetti";
+import { Member } from "../types/image";
 
 const names = [
     "김남준",
@@ -33,7 +34,7 @@ export default function Content() {
     // 점수
     const [score, setScore] = useState(0);
     // 문제
-    const [members, setMembers] = useState(
+    const [members, setMembers] = useState<Member[]>(
         names.map((name) => ({
             person: name,
             image: `assets/${name}.jpg`,
@@ -41,23 +42,23 @@ export default function Content() {
     );
     // 선지, 정답
     const [options, setOptions] = useState(members.slice(0, 5));
-    const [answer, setAnswer] = useState(options[parseInt(Math.random() * 5)]);
+    const [answer, setAnswer] = useState(options[Math.random() * 5]);
     // 모달
-    const [isOpen, setIsOpen] = useState(false);
-    const [message, setMessage] = useState("");
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [message, setMessage] = useState<string>("");
 
     // 2) member가 섞일 때마다 배열 맨 앞에 있는 5개를 option으로 변경
     useEffect(() => {
         setOptions(members.slice(0, 5));
     }, [members]);
 
-    // 3) onption이 바뀔 때마다 정답 선택 (0~4 중 하나)
+    // 3) option이 바뀔 때마다 정답 선택 (0~4 중 하나)
     useEffect(() => {
-        setAnswer(options[parseInt(Math.random() * 5)]);
+        setAnswer(options[Math.random() * 5]);
     }, [options]);
 
     // 선지 클릭 시 정답, 오답 모달 생성 및 점수 변경
-    const onClickOption = (e) => {
+    const onClickOption = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (e.currentTarget.innerText === answer.person) {
             // 정답 모달
             setMessage("정답!!!!😆 +1점!!");
