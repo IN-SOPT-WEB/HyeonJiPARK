@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
@@ -9,9 +9,23 @@ interface Props {
 
 export default function SearchPage({getUser}: Props) {
   const [input, setInput] = useState(""); // input 값
-  const [focus, setFocus] = useState(false); // input 포커싱 상태
   const [histories, setHistories] = useState<string[]>(JSON.parse(localStorage.getItem("history") || '[]')); // 검색 히스토리 저장
 
+  let historyRef = useRef<HTMLDivElement>(null);
+  const [focus, setFocus] = useState(false); // input 포커싱 상태
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent): void { // 드롭다운 외 영역 클릭 감지
+        if (historyRef.current && !historyRef.current.contains(e.target as Node)) {
+          setFocus(false);
+        }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+    };
+}, [historyRef]);
+  
   // input창 텍스트 보여주기
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
 
@@ -33,7 +47,6 @@ export default function SearchPage({getUser}: Props) {
     }
   };
 
-
   // 히스토리 삭제
   const onRemove = (target: string) => {
     const newHistories = histories.filter((history) => history !== target);
@@ -41,24 +54,14 @@ export default function SearchPage({getUser}: Props) {
     localStorage.setItem("history", JSON.stringify([...newHistories]));
   };
 
-  // input 포커스 될 때 드롭다운 나타남
-  const onFocusInput = (e: React.FocusEvent<HTMLInputElement>) => {
-    setFocus(true);
-  };
-
-  // 포커스 아웃 시 드롭다운 없어짐 (미완성,,,)
-  const onFocusOut = (e: React.MouseEvent<HTMLDivElement>) => {
-    // if ()
-    // setFocus(false);
-  };
-
   // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동, 드롭다운 사라짐
   const onClickHistory = (history: string) => {
     getUser(history);
+    setFocus(false);
   };
 
   return (
-    <Container onClick={onFocusOut}>
+    <>
       <SearchContainer>
         <Title>깃헙 프로필 검색창</Title>
         <SearchBar onSubmit={handleSubmit}>
@@ -68,13 +71,13 @@ export default function SearchPage({getUser}: Props) {
             placeholder="깃헙 아이디를 입력해주세요"
             value={input}
             onChange={handleChange}
-            onFocus={onFocusInput}
+            onFocus={() => (setFocus(true))}
             autoComplete="off"
             />
           <SearchButton type="submit" value="검색" />
         </SearchBar>
         {focus && (
-          <SearchHistories>
+          <SearchHistories ref={historyRef}>
             {histories.map((history) => (
               <DropdownList key={history}>
                 <SearchHistory onClick={() => onClickHistory(history)}>
@@ -89,13 +92,11 @@ export default function SearchPage({getUser}: Props) {
         )}
       </SearchContainer>
       <Outlet />
-    </Container>
+    </>
   );
 }
 
 // -------------------------- style --------------------------
-
-const Container = styled.div``;
 
 const SearchContainer = styled.header`
   display: flex;
