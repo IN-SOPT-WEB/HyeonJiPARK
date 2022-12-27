@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback, } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
 import confetti from "canvas-confetti";
-import { Member } from "../types/image";
+import { Member } from "../types";
 
 const names = [
     "김남준",
@@ -41,12 +41,11 @@ export default function Content() {
         }))
     );
     // 선지, 정답
-    const [options, setOptions] = useState(members.slice(0, 5));
-    const [answer, setAnswer] = useState(options[Math.random() * 5]);
+    const [options, setOptions] = useState<Member[]>();
+    const [answer, setAnswer] = useState<Member>();
     // 모달
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [message, setMessage] = useState<string>("");
-
     // 2) member가 섞일 때마다 배열 맨 앞에 있는 5개를 option으로 변경
     useEffect(() => {
         setOptions(members.slice(0, 5));
@@ -54,11 +53,13 @@ export default function Content() {
 
     // 3) option이 바뀔 때마다 정답 선택 (0~4 중 하나)
     useEffect(() => {
-        setAnswer(options[Math.random() * 5]);
+        if(options)
+        setAnswer(options[Math.floor(Math.random() * 5)]);
     }, [options]);
 
     // 선지 클릭 시 정답, 오답 모달 생성 및 점수 변경
     const onClickOption = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if(answer)
         if (e.currentTarget.innerText === answer.person) {
             // 정답 모달
             setMessage("정답!!!!😆 +1점!!");
@@ -105,16 +106,18 @@ export default function Content() {
                         <img src="../assets/over.gif" alt="game over" />
                         👿👿👿 GAME OVER 👿👿👿
                     </Ending>
-                ) : (
+                ) : answer && options && (
                     <>
                         <QuestionImg src={answer.image} />
-                        {options.map((option) => (
-                            <OptionBtn onClick={onClickOption}>
+                        {options.map((option, idx) => (
+                            <OptionBtn key={idx} onClick={onClickOption}>
                                 {option.person}
                             </OptionBtn>
                         ))}
                     </>
+                    
                 )}
+                
                 <RestartBtn onClick={onClickRestart}>다시 하기</RestartBtn>
                 <Modal open={isOpen} onClose={() => setIsOpen(false)}>
                     {message}
