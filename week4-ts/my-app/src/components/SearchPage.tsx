@@ -1,18 +1,26 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import useGetUser from "../hooks/useGetUser";
 
-interface SearchPageProps {
-  getUser: (username: string) => void;
-}
+// interface SearchPageProps {
+//   getUser: (username: string) => void;
+// }
 
-function SearchPage({getUser}: SearchPageProps) {
+// function SearchPage({getUser}: SearchPageProps) {
+  
+function SearchPage() {
   const [input, setInput] = useState(""); // input 값
   const [historyList, setHistoryList] = useState<string[]>(JSON.parse(localStorage.getItem("history") || '[]')); // 검색 히스토리 저장
 
   let historyRef = useRef<HTMLDivElement>(null);
   const [isFocus, setIsFocus] = useState(false); // input 포커싱 상태
+
+  const userNameRef = useRef<string>("");
+  const currentUserState = useGetUser(userNameRef);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent): void { // 드롭다운 외 영역 클릭 감지
@@ -24,8 +32,9 @@ function SearchPage({getUser}: SearchPageProps) {
     return () => {
         document.removeEventListener('mousedown', handleClickOutside);
     };
-}, [historyRef]);
-  
+  }, [historyRef]);
+
+
   // input창 텍스트 보여주기
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
 
@@ -35,7 +44,9 @@ function SearchPage({getUser}: SearchPageProps) {
     if (input === "") {
       alert("아이디를 입력하세요");
     } else {
-      getUser(input);
+      // getUser(input);
+      userNameRef.current = input;
+      navigate(`/search/${input}`, {state: currentUserState });
       if (!historyList.includes(input)) {
         // history 배열에 넣기 (중복 아닐 때)
         setHistoryList([...historyList, input]);
@@ -56,7 +67,9 @@ function SearchPage({getUser}: SearchPageProps) {
 
   // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동, 드롭다운 사라짐
   const onClickHistory = (history: string) => {
-    getUser(history);
+    // getUser(history);
+    userNameRef.current = input;
+    navigate(`/search/${input}`, {state: currentUserState });
     setIsFocus(false);
   };
 

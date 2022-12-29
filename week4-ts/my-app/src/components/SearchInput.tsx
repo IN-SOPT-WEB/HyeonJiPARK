@@ -36,7 +36,8 @@ function SearchInput() {
   };
 
   return (
-    <SearchPage getUser={getUser} />
+    // <SearchPage getUser={getUser} />
+    <SearchPage />
   )
 };
 
