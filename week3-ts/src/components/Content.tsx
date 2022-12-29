@@ -91,7 +91,7 @@ export default function Content() {
     const onClickRestart = () => {
         window.location.reload();
     };
-    
+
     return (
         <div>
             <MyScore>⭐️ 내 점수는 : {score}점 ⭐️</MyScore>
@@ -140,18 +140,6 @@ const Container = styled.div`
     justify-content: center;
     flex-direction: column;
 `;
-// const Ending = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     width: 300px;
-//     height: 500px;
-
-//     > img {
-//         width: 300px;
-//     }
-// `;
 const QuestionImg = styled.img`
     width: 300px;
     height: 300px;
