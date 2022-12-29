@@ -2,13 +2,13 @@ import React from "react";
 import ReactDom from "react-dom";
 import styled from "styled-components";
 
-interface Props {
+interface ModalProps {
     open: boolean;
     children: string;
     onClose: () => void;
   }
 
-export default function Modal({ open, children, onClose }: Props) {
+export default function Modal({ open, children, onClose }: ModalProps) {
     if (!open) return null;
 
     return ReactDom.createPortal(
@@ -33,7 +33,7 @@ const ModalBackground = styled.div`
     z-index: 1000;
 `;
 
-const ModalContainer = styled.div`
+const ModalContainer = styled.article`
     display: flex;
     flex-direction: column;
     justify-content: space-between;

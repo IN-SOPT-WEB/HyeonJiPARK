@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Modal from "./Modal";
 import confetti from "canvas-confetti";
 import { Member } from "../types";
+import Ending from "./Ending";
 
 const names = [
     "김남준",
@@ -32,7 +33,7 @@ const names = [
 
 export default function Content() {
     // 점수
-    const [score, setScore] = useState(0);
+    const [score, setScore] = useState<number>(0);
     // 문제
     const [members, setMembers] = useState<Member[]>(
         names.map((name) => ({
@@ -91,33 +92,27 @@ export default function Content() {
         window.location.reload();
     };
 
+    useEffect(() => {
+        
+    }, [score]);
+
     return (
         <div>
             <MyScore>⭐️ 내 점수는 : {score}점 ⭐️</MyScore>
             <Container>
-                {/* 점수 5정 이상이면 성공, 0점 미만이면 실패*/}
-                {score >= 5 ? (
-                    <Ending>
-                        <img src="../assets/win.gif" alt="game over" />
-                        😇😇😇 YOU WIN !!! 😇😇😇
-                    </Ending>
-                ) : score < 0 ? (
-                    <Ending>
-                        <img src="../assets/over.gif" alt="game over" />
-                        👿👿👿 GAME OVER 👿👿👿
-                    </Ending>
-                ) : answer && options && (
-                    <>
-                        <QuestionImg src={answer.image} />
-                        {options.map((option, idx) => (
-                            <OptionBtn key={idx} onClick={onClickOption}>
+                { score >= 5 || score < 0 ? ( // 점수 5정 이상이면 성공, 0점 미만이면 실패
+                    <Ending score={score} />
+                ) :  ( 
+                    <>                        
+                        <QuestionImg src={answer?.image} alt="question image"/>
+                        {options?.map((option, idx) => (
+                            <OptionBtn key={idx} type="button" onClick={onClickOption}>
                                 {option.person}
                             </OptionBtn>
                         ))}
                     </>
-                    
-                )}
-                
+                )
+                }
                 <RestartBtn onClick={onClickRestart}>다시 하기</RestartBtn>
                 <Modal open={isOpen} onClose={() => setIsOpen(false)}>
                     {message}
@@ -149,18 +144,18 @@ const Container = styled.div`
     justify-content: center;
     flex-direction: column;
 `;
-const Ending = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 500px;
+// const Ending = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     width: 300px;
+//     height: 500px;
 
-    > img {
-        width: 300px;
-    }
-`;
+//     > img {
+//         width: 300px;
+//     }
+// `;
 const QuestionImg = styled.img`
     width: 300px;
     height: 300px;
