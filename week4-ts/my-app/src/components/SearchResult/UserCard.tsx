@@ -3,43 +3,44 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { User } from "../../types";
 
-interface Props {
+interface UserProps {
   user: User;
 }
 
-function UserCard({ user }: Props) {
-  return (
-    <UserContainer>
-      <CloseBtn>
-        <Link to="/search"> X </Link>
-      </CloseBtn>
-      <UserImage src={user.avatar_url} alt="프로필사진" />
-      <UserName>{user.name}</UserName>
-      <UserId>{user.login}</UserId>
-      <UserLink
-        type="button"
-        onClick={() => {
-          window.open(user.html_url);
-        }}
-      >
-        깃허브 구경가기
-      </UserLink>
-      <UserInfoContainer>
-        <UserInfo>
-          <h1>{user.public_repos}</h1>
-          <p>Repos</p>
-        </UserInfo>
-        <UserInfo>
-          <h1>{user.followers}</h1>
-          <p>Followers</p>
-        </UserInfo>
-        <UserInfo>
-          <h1>{user.following}</h1>
-          <p>Following</p>
-        </UserInfo>
-      </UserInfoContainer>
-    </UserContainer>
-  );
+function UserCard({ user }: UserProps) {
+  const { avatar_url, name, login, html_url, public_repos, followers, following } = user;
+    return (
+        <UserContainer>
+        <CloseBtn>
+          <Link to="/search"> X </Link>
+        </CloseBtn>
+        <UserImage src={avatar_url} alt="프로필사진" />
+        <UserName>{name}</UserName>
+        <UserId>{login}</UserId>
+        <UserLink
+          type="button"
+          onClick={() => {
+            window.open(html_url);
+          }}
+        >
+          깃허브 구경가기
+        </UserLink>
+        <UserInfoContainer>
+          <UserInfo>
+            <h1>{public_repos}</h1>
+            <p>Repos</p>
+          </UserInfo>
+          <UserInfo>
+            <h1>{followers}</h1>
+            <p>Followers</p>
+          </UserInfo>
+          <UserInfo>
+            <h1>{following}</h1>
+            <p>Following</p>
+          </UserInfo>
+        </UserInfoContainer>
+      </UserContainer>
+    );
 }
 
 export default UserCard;
@@ -49,11 +50,11 @@ const UserContainer = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 2rem;
 
   margin-top: 5%;
-  padding: 10px;
-  border-radius: 20px;
+  padding: 1rem;
+  border-radius: 2rem;
   background-color: rgba(255, 255, 255, 0.9);
 `;
 
@@ -63,43 +64,53 @@ const CloseBtn = styled.button`
 `;
 
 const UserImage = styled.img`
-  width: 200px;
-  border-radius: 100px;
+  width: 20rem;
+  border-radius: 10rem;
 `;
 
 const UserName = styled.h1`
-  font-size: 1.8rem;
+  font-size: 2rem;
 `;
 
 const UserId = styled.h2`
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: gray;
 `;
 
 const UserLink = styled.button`
-  padding: 10px 30px;
-  font-size: 1rem;
+  padding: 1rem 3rem;
+  font-size: 1.4rem;
   background-color: white;
-  border: solid 1px #66abfd;
-  border-radius: 20px;
+  border: solid 0.1rem #66abfd;
+  border-radius: 2rem;
 `;
 
 const UserInfoContainer = styled.div`
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 2rem;
   width: 80%;
-  gap: 20px;
+  gap: 2rem;
 `;
+
 const UserInfo = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  padding: 20px;
+  flex-direction: column;
+  gap: 1rem;
+
   width: 30%;
+  padding: 2rem;
+  
   background-color: rgba(152, 215, 255, 0.3);
-  border: solid 1px #75c9f8;
-  border-radius: 10px;
+  border: solid 0.1rem #75c9f8;
+  border-radius: 1rem;
+
+  > h1 {
+    font-size: 1.8rem;
+  }
+  > p {
+    font-size: 1.4rem;
+  }
 `;

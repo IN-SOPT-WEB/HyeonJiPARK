@@ -106,13 +106,13 @@ const SearchContainer = styled.header`
   justify-content: center;
   align-items: center;
   position: relative;
-  gap: 20px;
+  gap: 2rem;
 
-  width: 500px;
+  width: 50rem;
   margin-top: 10%;
-  padding: 20px;
+  padding: 2rem;
 
-  border-radius: 20px;
+  border-radius: 2rem;
   background-color: rgba(255, 255, 255, 0.9);
 `;
 
@@ -123,15 +123,15 @@ const Title = styled.h1`
 const SearchBar = styled.form`
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
 
   width: 90%;
 `;
 
 const SearchInput = styled.input`
   border: none;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 1rem;
+  padding: 1rem;
   background-color: white;
   width: 70%;
   &:focus {
@@ -141,8 +141,8 @@ const SearchInput = styled.input`
 
 const SearchButton = styled.input`
   border: none;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 1rem;
+  padding: 1rem;
 `;
 
 const SearchHistories = styled.div`
@@ -153,10 +153,10 @@ const SearchHistories = styled.div`
   position: absolute;
   left: 2.5%;
   top: 87%;
-  gap: 10px;
+  gap: 1rem;
   
-  width: 450px;
-  padding: 5px 10px;
+  width: 45rem;
+  padding: 0.5rem 1rem;
 `;
 
 const DropdownList = styled.div`
@@ -175,16 +175,17 @@ const SearchHistory = styled.div`
   flex-wrap: wrap;
 
   width: 85%;
-  padding: 10px;
-  margin: -5px;
+  padding: 1rem;
+  margin: -0.5rem;
   
   background-color: rgba(181, 203, 255, 0.675);
+  font-size: 1.4rem;
 `;
 
 const DeleteButton = styled.button`
-  padding: 10px;
-  margin: -5px;
-  margin-left: 5px;
+  padding: 1rem;
+  margin: -0.5rem;
+  margin-left: 0.5rem;
 
   background-color: rgba(181, 203, 255, 0.675);
 `;

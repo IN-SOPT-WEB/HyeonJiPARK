@@ -14,10 +14,10 @@ export default Loading
 const LoadingContainer = styled.div`
   display: flex;
   width: 100%;
-  margin: 200px 0px;
+  margin: 20rem 0rem;
 
   & > img {
-    width: 80px;
+    width: 8rem;
     margin: 0 auto;
   }
 `

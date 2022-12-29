@@ -14,7 +14,7 @@ export default NoResult
 const NoResultContainer = styled.div`
   display: flex;
   width: 100%;
-  margin: 200px 0px;
+  margin: 20rem 0rem;
 
   & > p {
     margin: 0 auto;
