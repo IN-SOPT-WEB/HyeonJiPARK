@@ -91,11 +91,7 @@ export default function Content() {
     const onClickRestart = () => {
         window.location.reload();
     };
-
-    useEffect(() => {
-        
-    }, [score]);
-
+    
     return (
         <div>
             <MyScore>⭐️ 내 점수는 : {score}점 ⭐️</MyScore>
