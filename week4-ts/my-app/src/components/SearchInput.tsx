@@ -4,13 +4,13 @@ import { getUserAPI } from "../lib/api";
 import { User } from "../types";
 import SearchPage from "./SearchPage";
 
-export interface UserStateInterface {
+export interface UserStateInfo {
   status: "waiting" | "loading" | "success" | "fail";
   user: User | null;
 }
 
 function SearchInput() {
-  const [userState, setUserState] = useState<UserStateInterface>({
+  const [userState, setUserState] = useState<UserStateInfo>({
     status: "waiting",
     user: null,
   });

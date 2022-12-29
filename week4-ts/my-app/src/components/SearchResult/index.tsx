@@ -3,10 +3,10 @@ import { useLocation } from "react-router-dom";
 import Loading from "./Loading";
 import UserCard from "./UserCard";
 import NoResult from "./NoResult";
-import { UserStateInterface } from "../SearchInput";
+import { UserStateInfo } from "../SearchInput";
 
 interface UserStateLocation {
-  state: UserStateInterface;
+  state: UserStateInfo;
 }
 
 function SearchResult() {

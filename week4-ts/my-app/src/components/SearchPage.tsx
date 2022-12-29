@@ -3,21 +3,21 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-interface Props {
+interface SearchPageProps {
   getUser: (username: string) => void;
 }
 
-function SearchPage({getUser}: Props) {
+function SearchPage({getUser}: SearchPageProps) {
   const [input, setInput] = useState(""); // input 값
-  const [histories, setHistories] = useState<string[]>(JSON.parse(localStorage.getItem("history") || '[]')); // 검색 히스토리 저장
+  const [historyList, setHistoryList] = useState<string[]>(JSON.parse(localStorage.getItem("history") || '[]')); // 검색 히스토리 저장
 
   let historyRef = useRef<HTMLDivElement>(null);
-  const [focus, setFocus] = useState(false); // input 포커싱 상태
+  const [isFocus, setIsFocus] = useState(false); // input 포커싱 상태
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent): void { // 드롭다운 외 영역 클릭 감지
         if (historyRef.current && !historyRef.current.contains(e.target as Node)) {
-          setFocus(false);
+          setIsFocus(false);
         }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -36,28 +36,28 @@ function SearchPage({getUser}: Props) {
       alert("아이디를 입력하세요");
     } else {
       getUser(input);
-      if (!histories.includes(input)) {
+      if (!historyList.includes(input)) {
         // history 배열에 넣기 (중복 아닐 때)
-        setHistories([...histories, input]);
+        setHistoryList([...historyList, input]);
         // 로컬스토리지 업데이트
-        localStorage.setItem("history", JSON.stringify([...histories, input]));
+        localStorage.setItem("history", JSON.stringify([...historyList, input]));
       }
       setInput("");
-      setFocus(false);
+      setIsFocus(false);
     }
   };
 
   // 히스토리 삭제
   const onRemove = (target: string) => {
-    const newHistories = histories.filter((history) => history !== target);
-    setHistories(newHistories);
-    localStorage.setItem("history", JSON.stringify([...newHistories]));
+    const newHistoryList = historyList.filter((history) => history !== target);
+    setHistoryList(newHistoryList);
+    localStorage.setItem("history", JSON.stringify([...newHistoryList]));
   };
 
   // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동, 드롭다운 사라짐
   const onClickHistory = (history: string) => {
     getUser(history);
-    setFocus(false);
+    setIsFocus(false);
   };
 
   return (
@@ -71,18 +71,18 @@ function SearchPage({getUser}: Props) {
             placeholder="깃헙 아이디를 입력해주세요"
             value={input}
             onChange={handleChange}
-            onFocus={() => (setFocus(true))}
+            onFocus={() => (setIsFocus(true))}
             autoComplete="off"
             />
           <SearchButton type="submit" value="검색" />
         </SearchBar>
-        {focus && (
+        {isFocus && (
           <SearchHistories ref={historyRef}>
-            {histories.map((history) => (
+            {historyList.map((history) => (
               <DropdownList key={history}>
-                <SearchHistory onClick={() => onClickHistory(history)}>
+                <DropdownItem onClick={() => onClickHistory(history)}>
                   {history}
-                </SearchHistory>
+                </DropdownItem>
                 <DeleteButton onClick={() => onRemove(history)}>
                   X
                 </DeleteButton>
@@ -159,7 +159,7 @@ const SearchHistories = styled.div`
   padding: 0.5rem 1rem;
 `;
 
-const DropdownList = styled.div`
+const DropdownList = styled.ul`
   display: flex;
 
   width: 70%;
@@ -169,7 +169,7 @@ const DropdownList = styled.div`
   }
 `;
 
-const SearchHistory = styled.div`
+const DropdownItem = styled.li`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
