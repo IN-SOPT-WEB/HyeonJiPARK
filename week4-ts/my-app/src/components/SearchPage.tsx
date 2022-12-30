@@ -2,23 +2,13 @@ import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import useGetUser from "../hooks/useGetUser";
 
-// interface SearchPageProps {
-//   getUser: (username: string) => void;
-// }
-
-// function SearchPage({getUser}: SearchPageProps) {
-  
 function SearchPage() {
   const [input, setInput] = useState(""); // input 값
   const [historyList, setHistoryList] = useState<string[]>(JSON.parse(localStorage.getItem("history") || '[]')); // 검색 히스토리 저장
 
   let historyRef = useRef<HTMLDivElement>(null);
   const [isFocus, setIsFocus] = useState(false); // input 포커싱 상태
-
-  const userNameRef = useRef<string>("");
-  const currentUserState = useGetUser(userNameRef);
 
   const navigate = useNavigate();
 
@@ -34,6 +24,9 @@ function SearchPage() {
     };
   }, [historyRef]);
 
+  useEffect(() => {
+    localStorage.setItem("history", JSON.stringify(historyList));
+  }, [historyList]);
 
   // input창 텍스트 보여주기
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
@@ -44,14 +37,10 @@ function SearchPage() {
     if (input === "") {
       alert("아이디를 입력하세요");
     } else {
-      // getUser(input);
-      userNameRef.current = input;
-      navigate(`/search/${input}`, {state: currentUserState });
+      navigate(`/search/${input}`);
       if (!historyList.includes(input)) {
         // history 배열에 넣기 (중복 아닐 때)
         setHistoryList([...historyList, input]);
-        // 로컬스토리지 업데이트
-        localStorage.setItem("history", JSON.stringify([...historyList, input]));
       }
       setInput("");
       setIsFocus(false);
@@ -62,14 +51,11 @@ function SearchPage() {
   const onRemove = (target: string) => {
     const newHistoryList = historyList.filter((history) => history !== target);
     setHistoryList(newHistoryList);
-    localStorage.setItem("history", JSON.stringify([...newHistoryList]));
   };
 
   // 드롭다운 히스토리 클릭 시 해당 유저 프로필 페이지로 이동, 드롭다운 사라짐
   const onClickHistory = (history: string) => {
-    // getUser(history);
-    userNameRef.current = input;
-    navigate(`/search/${input}`, {state: currentUserState });
+    navigate(`/search/${history}`);
     setIsFocus(false);
   };
 

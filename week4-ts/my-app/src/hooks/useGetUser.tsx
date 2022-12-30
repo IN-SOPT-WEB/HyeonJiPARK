@@ -8,9 +8,9 @@ export interface UserStateInfo {
 }
 
 // 검색 input값 받아와서 해당 유저 정보 불러오기
-function useGetUser(userNameProps: React.MutableRefObject<string>) {
-    
-    const [userName, setUserName] = useState<React.MutableRefObject<string>>(userNameProps);
+function useGetUser(userNameProps: string) {
+    console.log(userNameProps);
+    const [userName, setUserName] = useState<string>(userNameProps);
     const [userState, setUserState] = useState<UserStateInfo>({
         status: "waiting",
         user: null,
@@ -18,7 +18,8 @@ function useGetUser(userNameProps: React.MutableRefObject<string>) {
 
     useEffect(() => {
         getUser();
-    }, [userName]);
+        console.log(userNameProps, '2');
+    }, [userNameProps]);
 
     const getUser = async() => {
         setUserState({ ...userState, status: "loading" });

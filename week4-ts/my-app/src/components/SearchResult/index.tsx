@@ -1,22 +1,22 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import UserCard from "./UserCard";
 import NoResult from "./NoResult";
-import { UserStateInfo } from "../SearchInput";
-
-interface UserStateLocation {
-  state: UserStateInfo;
-}
+import useGetUser from "../../hooks/useGetUser";
 
 function SearchResult() {
-  const { state } = useLocation() as UserStateLocation;
+  const currentUserName = useParams().username || "";
+  const currentUserState = useGetUser(currentUserName);
+  console.log(currentUserName)
+  console.log(currentUserState.user)
 
-  if (state.status === "loading") return <Loading />;
-  if (state.status === "fail") return <NoResult />;
-  if (state.user) return <UserCard user={state.user} />;
-  
-  return <div />;
+  // useEffect
+
+  if (currentUserState.status === "loading") return <Loading />;
+  if (currentUserState.status === "fail") return <NoResult />;
+  if (currentUserState.user) return <UserCard user={currentUserState.user} />;
+  return null;
 }
 
 export default SearchResult;
