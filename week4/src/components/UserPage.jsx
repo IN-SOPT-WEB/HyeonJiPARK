@@ -13,9 +13,9 @@ export default function UserPage() {
     const response = await axios.get(
       `https://api.github.com/users/${username}`,
       {
-        headers: {
-          Authorization: `Bearer ${process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN}`,
-        },
+        // headers: {
+        //   Authorization: `Bearer ${process.env.REACT_APP_GITHUB_PERSONAL_ACCESS_TOKEN}`,
+        // },
       }
     );
     setUsers(response.data);
